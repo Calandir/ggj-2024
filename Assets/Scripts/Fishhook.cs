@@ -8,6 +8,8 @@ public class Fishhook : MonoBehaviour
 
     public FishingPlayer FishingPlayer => m_fishingPlayer;
 
+	private float WaterLevel;
+
 	[SerializeField]
     private FishingPlayer m_fishingPlayer;
 
@@ -18,12 +20,16 @@ public class Fishhook : MonoBehaviour
 	private float m_fishhookReelSpeedPerSecond = 1.0f;
 
     private bool m_isReeling = false;
+	private bool m_isAirBorn = true;
 
-	public void DropAt(Vector2 position)
+	public void DropAt(Vector2 position, Vector2 velocity = default(Vector2))
     {
         transform.position = position;
 
-        m_rigidbody.velocity = Vector2.zero;
+        m_rigidbody.velocity = velocity;
+
+		// !! Assumption is made here that hook is dropped above water line
+		m_isAirBorn = true;
     }
 
     public void LerpTo(Vector2 destination)
@@ -53,5 +59,14 @@ public class Fishhook : MonoBehaviour
 
         m_isReeling = false;
 		m_rigidbody.isKinematic = false;
+	}
+
+	private void Update()
+	{
+		if (m_isAirBorn && transform.position.y < WaterLevel) {
+			// When hook hits water, stop it.
+        	m_rigidbody.velocity = new Vector2(0.0f, 0.0f);
+			m_isAirBorn = false;
+		}
 	}
 }
