@@ -13,8 +13,19 @@ public class FishingPlayer : MonoBehaviour
 	[SerializeField]
 	public int fishOnTheLine = 0;
 
+	private int __fishTotal = 0;
 	[SerializeField]
-	public int fishTotal = 0;
+	public int fishTotal {
+		get
+		{
+			return __fishTotal;
+		}
+		set
+		{
+			// When fish total is set, check new value to update fish pile sprite.
+			this.__fishTotal = value;
+		}
+	}
 
 	[SerializeField]
 	private int m_playerNumber = 1;
@@ -134,6 +145,7 @@ public class FishingPlayer : MonoBehaviour
 				// Finished reeling
 				fishTotal += fishOnTheLine;
 				fishOnTheLine = 0;
+				Debug.Log(string.Format("player {0} fish total: {1}", m_playerNumber, fishTotal));
 
 				m_fishhook.gameObject.SetActive(false);
 				CastPower = 0;
