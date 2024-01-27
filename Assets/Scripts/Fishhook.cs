@@ -6,6 +6,11 @@ public class Fishhook : MonoBehaviour
 {
     public bool IsReeling => m_isReeling;
 
+    public FishingPlayer FishingPlayer => m_fishingPlayer;
+
+	[SerializeField]
+    private FishingPlayer m_fishingPlayer;
+
     [SerializeField]
     private Rigidbody2D m_rigidbody;
 

@@ -8,6 +8,8 @@ using System.Text;
 
 public class FishingPlayer : MonoBehaviour
 {
+	public FishingState CurrentState => m_currentState;
+
 	[SerializeField]
 	private int m_playerNumber = 1;
 
@@ -114,7 +116,7 @@ public class FishingPlayer : MonoBehaviour
 				// Finished reeling
 				m_fishhook.gameObject.SetActive(false);
 
-				m_currentState = FishingState.ChargeCast;
+				m_currentState = FishingState.Idle;
 			}
 		}
 	}
