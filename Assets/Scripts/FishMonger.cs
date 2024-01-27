@@ -7,6 +7,9 @@ public class FishMonger : MonoBehaviour
 	public Camera activeCamera;
 	public GameObject FishTemplate;
 
+	[SerializeField]
+	private bool m_throwFishOnStart = true;
+
 	Transform RedFish, BlueFish;
 
     void Start()
@@ -14,20 +17,24 @@ public class FishMonger : MonoBehaviour
 		RedFish = transform.Find("RedFish");
 		BlueFish = transform.Find("BlueFish");
 
-		launchBlueFish();
-		launchRedFish();
+		if (m_throwFishOnStart)
+		{
+			launchBlueFish();
+			launchRedFish();
+		}
 	}
 
 	void Update()
 	{
 
 	}
-	void launchBlueFish()
+	
+	public void launchBlueFish()
 	{
 		launchFish(BlueFish, -30, 50, false, SoftbodyFish.ControlScheme.WASD);
 	}
 
-	void launchRedFish()
+	public void launchRedFish()
 	{
 		launchFish(RedFish, -150, 50, false, SoftbodyFish.ControlScheme.Arrows);
 	}

@@ -9,12 +9,15 @@ public class DayCycle : MonoBehaviour
     public float DayCycleTime;
 	[SerializeField]
     public float MaxYValue;
+	[SerializeField]
+    public float MaxXValue;
 
     void Update()
     {
-        float yPos = transform.position.y + (1.0f / DayCycleTime) * Time.deltaTime;
-        yPos = Mathf.Clamp(yPos, 0.0f, MaxYValue);
+        float deltaDistance = transform.position.y + (1.0f / DayCycleTime) * Time.deltaTime;
+        float yPos = Mathf.Clamp(deltaDistance, 0.0f, MaxYValue);
+        float xPos = Mathf.Clamp(deltaDistance, 0.0f, MaxXValue);
 
-        transform.position = new Vector3(0.0f, yPos, 0.0f);
+        transform.position = new Vector3(xPos, yPos, 0.0f);
     }
 }

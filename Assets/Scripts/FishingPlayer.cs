@@ -103,6 +103,9 @@ public class FishingPlayer : MonoBehaviour
 
 	private KeyCode m_inputKeyCode;
 
+	[SerializeField]
+	private FishMonger m_fishMonger;
+
 	private void Start()
 	{
 		m_fishhook.gameObject.SetActive(false);
@@ -124,6 +127,16 @@ public class FishingPlayer : MonoBehaviour
 
 	private void Update()
 	{
+		// Can throw at any time
+		if (m_playerNumber == 1 && Input.GetKeyDown(KeyCode.Z))
+		{
+			m_fishMonger.launchBlueFish();
+		}
+		if (m_playerNumber == 2 && Input.GetKeyDown(KeyCode.Slash))
+		{
+			m_fishMonger.launchRedFish();
+		}
+
 		if (m_currentState == FishingState.Idle)
 		{
 			if (Input.GetKeyDown(m_inputKeyCode)) {
@@ -148,7 +161,7 @@ public class FishingPlayer : MonoBehaviour
 			m_fishhook.gameObject.SetActive(true);
 
 			// Magic value so rod hook is not cast into space.
-			float scaledPower = CastPower / 18.0f;
+			float scaledPower = CastPower / 12.0f;
 			float xDirection = m_fishhookDropLocation.x < 0 ? scaledPower : -scaledPower;
 			Vector2 velocity = new Vector2(xDirection, scaledPower);
 
