@@ -6,6 +6,9 @@ using UnityEngine.U2D.Animation;
 
 public class SoftbodyFish : MonoBehaviour
 {
+	public Vector2 startVelocity, startPosition = Vector2.zero;
+	public Quaternion startRotation = Quaternion.identity;
+
 	public enum ControlScheme
 	{
 		WASD,
@@ -17,6 +20,11 @@ public class SoftbodyFish : MonoBehaviour
 	KeyCode up, down, left, right;
 
 	Transform[] Bones;
+
+	public Vector2 GetPosition()
+	{
+		return Bones[0].position;
+	}
 
 	void Start()
 	{
@@ -48,8 +56,9 @@ public class SoftbodyFish : MonoBehaviour
 		{
 			Transform Bone = Bones[i];
 			Rigidbody2D rb = Bone.AddComponent<Rigidbody2D>();
-			rb.gravityScale = 0;
+			rb.gravityScale = 0.5f;
 			rb.drag = 0.1f;
+			rb.mass = Mathf.Lerp(1, 0.3f, i / Bones.Length); //Fish gets lighter towards the tail
 			if (i > 0)
 			{
 				HingeJoint2D hinge = Bone.AddComponent<HingeJoint2D>();
@@ -63,7 +72,14 @@ public class SoftbodyFish : MonoBehaviour
 				hinge.useLimits = true;
 			}
 		}
-    }
+		for (int i = 0; i < Bones.Length; i++) {
+			
+		}
+
+		Bones[0].GetComponent<Rigidbody2D>().velocity = startVelocity;
+		Bones[0].position = startPosition;
+		Bones[0].rotation = startRotation;
+	}
 
 	// Update is called once per frame
 	void Update()
@@ -87,7 +103,22 @@ public class SoftbodyFish : MonoBehaviour
 		}
 		aim.Normalize();
 
-		Transform Bone = Bones[0];
-		Bone.GetComponent<Rigidbody2D>().AddForce(aim*5);
+		Rigidbody2D headRB = Bones[0].GetComponent<Rigidbody2D>();
+		float thrustFactor = 20;
+		if ((headRB.velocity + aim).magnitude < headRB.velocity.magnitude)
+		{
+			thrustFactor *= 3;
+		}
+		if (headRB.velocity.magnitude < 10)
+		{
+			thrustFactor *= 3;
+		}
+		for (int i = 0; i < Bones.Length; i++)
+		{
+			Rigidbody2D boneRB = Bones[i].GetComponent<Rigidbody2D>();
+			//boneRB.AddForce(aim * thrustFactor * boneRB.mass * Mathf.Lerp(1, -0.5f, i / Bones.Length));
+		}
+
+		headRB.AddForce(aim*thrustFactor);
 	}
 }
