@@ -661,6 +661,14 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 6560e430915459e44bd6b499180dc5e2, type: 3}
     - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: m_fishhookDropLocation.x
+      value: 3.833
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: m_fishhookDropLocation.y
+      value: 2.042
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218956018593739478, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: m_GravityScale
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7438449759142020390, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
