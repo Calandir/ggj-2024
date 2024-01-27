@@ -56,6 +56,51 @@ public class FishingPlayer : MonoBehaviour
 		}
 	}
 
+	[SerializeField]
+	public int fishOnTheLine = 0;
+
+	public SpriteRenderer fishPileRenderer;
+	public Sprite
+		fishBasket0,
+		fishBasket1,
+		fishBasket2,
+		fishBasket3,
+		fishBasket4,
+		fishBasket5,
+		fishBasket6,
+		fishBasket7,
+		fishBasket8,
+		fishBasket9;
+
+	private Sprite[] fishSprites;
+
+	private int __fishTotal = 0;
+	[SerializeField]
+	public int fishTotal {
+		get
+		{
+			return __fishTotal;
+		}
+		set
+		{
+			// When fish total is set, check new value to update fish pile sprite.
+			this.__fishTotal = value;
+			// Assign baskets at an ever increasing difference of fish given by fibonacci sequence.
+			int a = 0, b = 1;
+			int i = 0;
+			for (i = 0; i < 10; i++) {
+				int c = a + b; 
+				if (this.__fishTotal < c) {
+					break;
+				}
+				a = b;
+				b = c;
+			}
+			fishPileRenderer.sprite = fishSprites[i];
+		}
+	}
+
+
 	private KeyCode m_inputKeyCode;
 
 	private void Start()
@@ -69,6 +114,9 @@ public class FishingPlayer : MonoBehaviour
 			{FishingState.Sinking, blueFisherman},
 			{FishingState.Reel, blueFisherman}
 		};
+
+		fishSprites = new Sprite[10]{fishBasket0, fishBasket1, fishBasket2, fishBasket3, fishBasket4, fishBasket5, fishBasket6, fishBasket7, fishBasket8, fishBasket9};
+
 		spriteRenderer.sprite = spriteMap[m_currentState];
 
 		m_inputKeyCode = m_playerNumber == 1 ? KeyCode.LeftShift : KeyCode.RightShift;
@@ -126,6 +174,10 @@ public class FishingPlayer : MonoBehaviour
 			if (!m_fishhook.IsReeling)
 			{
 				// Finished reeling
+				fishTotal += fishOnTheLine;
+				fishOnTheLine = 0;
+				Debug.Log(string.Format("player {0} fish total: {1}", m_playerNumber, fishTotal));
+
 				m_fishhook.gameObject.SetActive(false);
 				CastPower = 0;
 				m_currentState = FishingState.Idle;
