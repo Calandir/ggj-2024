@@ -223,7 +223,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_player: {fileID: 1230605681}
   m_collisionParentName: RedFish
-  m_offsetWhenDamaged: {x: 1, y: -0.5}
+  m_damageSprites:
+  - {fileID: 21300000, guid: 5ed872a941771f64885f720a2596f260, type: 3}
+  m_spriteRenderer: {fileID: 220283297}
+  m_health: 12
+  m_offsetWhenDamaged: {x: 0.2, y: -0.02}
   m_damageAnimationTimeSeconds: 0.5
 --- !u!61 &220283300
 BoxCollider2D:
@@ -2007,7 +2011,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_player: {fileID: 1634737475}
   m_collisionParentName: BlueFish
-  m_offsetWhenDamaged: {x: 1, y: -0.5}
+  m_damageSprites:
+  - {fileID: 21300000, guid: 6090b53ce55744f169185cf97858fe8e, type: 3}
+  - {fileID: 21300000, guid: 32480d05a1ce447b99da398f2caec24c, type: 3}
+  - {fileID: 21300000, guid: 5094b8ddb8ef04f7ca1a1fe99ab9330b, type: 3}
+  - {fileID: 21300000, guid: 50df571ff4b60dd4ab557c29f43cd276, type: 3}
+  m_spriteRenderer: {fileID: 1816505572}
+  m_health: 12
+  m_offsetWhenDamaged: {x: 0.2, y: -0.02}
   m_damageAnimationTimeSeconds: 0.5
 --- !u!61 &1816505575
 BoxCollider2D:
