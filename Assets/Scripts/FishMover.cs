@@ -57,5 +57,9 @@ public class FishMover : MonoBehaviour
         {
             body.velocity = new UnityEngine.Vector2(UnityEngine.Vector2.left.x * speed, body.velocity.y);
         }     
+        if (transform.position.x > 15 || transform.position.x < -15)
+        {
+            Destroy(gameObject);
+        }
     }
 }
