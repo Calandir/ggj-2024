@@ -148,7 +148,7 @@ public class FishingPlayer : MonoBehaviour
 			m_fishhook.gameObject.SetActive(true);
 
 			// Magic value so rod hook is not cast into space.
-			float scaledPower = CastPower / 18.0f;
+			float scaledPower = CastPower / 12.0f;
 			float xDirection = m_fishhookDropLocation.x < 0 ? scaledPower : -scaledPower;
 			Vector2 velocity = new Vector2(xDirection, scaledPower);
 
