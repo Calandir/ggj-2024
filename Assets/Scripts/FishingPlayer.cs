@@ -189,7 +189,6 @@ public class FishingPlayer : MonoBehaviour
 				// Finished reeling
 				fishTotal += fishOnTheLine;
 				fishOnTheLine = 0;
-				Debug.Log(string.Format("player {0} fish total: {1}", m_playerNumber, fishTotal));
 
 				m_fishhook.gameObject.SetActive(false);
 				CastPower = 0;
