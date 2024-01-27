@@ -18,8 +18,8 @@ public class PromptInput : MonoBehaviour
         inputKeyMap = new Dictionary<string, KeyCode[]>{
             {"lshift", new KeyCode[]{KeyCode.LeftShift}},
             {"rshift", new KeyCode[]{KeyCode.RightShift}},
-            {"wsadz", new KeyCode[]{KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.Z}},
-            {"arrow", new KeyCode[]{KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.Question}}
+            {"wsadz", new KeyCode[]{KeyCode.Z}},
+            {"arrow", new KeyCode[]{KeyCode.Slash}}
         };
     }
 
