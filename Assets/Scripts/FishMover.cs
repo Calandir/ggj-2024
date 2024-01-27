@@ -13,11 +13,11 @@ public class FishMover : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         if (facingRight == false)
             {
-                transform.localScale = new UnityEngine.Vector2(-1, 1);
+                transform.localScale = new UnityEngine.Vector2(-0.7f, 0.7f);
             }
         else
             {
-                transform.localScale = new UnityEngine.Vector2(1, 1);
+                transform.localScale = new UnityEngine.Vector2(0.7f, 0.7f);
             }
     }
     
