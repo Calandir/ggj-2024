@@ -58,18 +58,27 @@ public class FishingPlayer : MonoBehaviour
 			m_fishhook.DropAt(m_fishhookDropLocation);
 			
 			m_currentState = FishingState.Sinking;
+
+			return;
 		}
 		else if (m_currentState == FishingState.Sinking)
 		{
-			// TODO wait for reel input
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				m_fishhook.LerpTo(transform.position);
 
-			m_currentState = FishingState.Reel;
+				m_currentState = FishingState.Reel;
+			}
 		}
 		else if (m_currentState == FishingState.Reel)
 		{
-			// TODO wait for reel animation
+			if (!m_fishhook.IsReeling)
+			{
+				// Finished reeling
+				m_fishhook.gameObject.SetActive(false);
 
-			m_currentState = FishingState.ChargeCast;
+				m_currentState = FishingState.ChargeCast;
+			}
 		}
 	}
 }
