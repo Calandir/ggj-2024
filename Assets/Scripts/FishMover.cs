@@ -11,13 +11,18 @@ public class FishMover : MonoBehaviour
     [SerializeField]
     private BoxCollider2D m_boxCollider;
 
+    private bool m_isHooked = false;
+
 	public void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Fishhook")
         {
+            m_isHooked = true;
+
             transform.SetParent(other.transform);
 
-            body.isKinematic = true;
+            Destroy(body);
+
             m_boxCollider.enabled = false;
 
             Fishhook fishhook = other.GetComponent<Fishhook>();
@@ -57,6 +62,11 @@ public class FishMover : MonoBehaviour
     
     private void FixedUpdate()
     {
+        if (m_isHooked)
+        {
+            return;
+        }
+
         if (facingRight)
         {
             body.velocity = new UnityEngine.Vector2(UnityEngine.Vector2.right.x * speed, body.velocity.y);
