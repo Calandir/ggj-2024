@@ -670,6 +670,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3187413869595511434, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f84579c2d6bdebf478a0f5e22300fc1b, type: 3}
     - target: {fileID: 3380398536598651527, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: m_Name
       value: FishingPlayer
@@ -686,6 +690,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: blueFisherman
+      value: 
+      objectReference: {fileID: 21300000, guid: f84579c2d6bdebf478a0f5e22300fc1b, type: 3}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1230605683}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: blueFishermanCast
+      value: 
+      objectReference: {fileID: 21300000, guid: 6560e430915459e44bd6b499180dc5e2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -702,6 +718,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fef0612bd766a74b8f2fad0fee4dde3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &1230605683 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3187413869595511434, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+  m_PrefabInstance: {fileID: 1230605680}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1471396653
 PrefabInstance:
   m_ObjectHideFlags: 0
