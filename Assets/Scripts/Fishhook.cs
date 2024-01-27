@@ -8,31 +8,49 @@ public class Fishhook : MonoBehaviour
 
     public FishingPlayer FishingPlayer => m_fishingPlayer;
 
+	private float WaterLevel;
+
 	[SerializeField]
     private FishingPlayer m_fishingPlayer;
 
     [SerializeField]
     private Rigidbody2D m_rigidbody;
 
+    [SerializeField]
+    private Vector2 m_reelDestination;
+
 	[SerializeField]
 	private float m_fishhookReelSpeedPerSecond = 1.0f;
 
     private bool m_isReeling = false;
+	private bool m_isAirBorn = true;
 
-	public void DropAt(Vector2 position)
+    private float m_currentAngleRadians;
+    private float m_hypotenuse;
+    private bool m_sinkClockwise;
+
+    private float m_timeSinceLastSink;
+
+	public void DropAt(Vector2 position, bool sinkClockWise, Vector2 velocity = default(Vector2))
     {
         transform.position = position;
 
-        m_rigidbody.velocity = Vector2.zero;
+        m_sinkClockwise = sinkClockWise;
+
+        m_rigidbody.isKinematic = false;
+        m_rigidbody.velocity = velocity;
+
+		// !! Assumption is made here that hook is dropped above water line
+		m_isAirBorn = true;
     }
 
-    public void LerpTo(Vector2 destination)
+    public void LerpToReelDestination()
     {
-		Vector2 distanceToTravel = (Vector2)transform.position - destination;
+		Vector2 distanceToTravel = (Vector2)transform.position - m_reelDestination;
 
         float totalTravelTime = distanceToTravel.magnitude / m_fishhookReelSpeedPerSecond;
 
-        StartCoroutine(ReelRoutine(Time.time, totalTravelTime, transform.position, destination));
+        StartCoroutine(ReelRoutine(Time.time, totalTravelTime, transform.position, m_reelDestination));
     }
 
     private IEnumerator ReelRoutine(float startTime, float reelTime, Vector2 start, Vector2 finish)
@@ -44,7 +62,7 @@ public class Fishhook : MonoBehaviour
 
 		while (Time.time < finishTime)
         {
-            float progress = (Time.time - startTime) / reelTime;
+            float progress = Easing((Time.time - startTime) / reelTime);
 
             transform.position = Vector2.Lerp(start, finish, progress);
 
@@ -53,5 +71,55 @@ public class Fishhook : MonoBehaviour
 
         m_isReeling = false;
 		m_rigidbody.isKinematic = false;
+	}
+
+    private float Easing(float number)
+    {
+		return Mathf.Sqrt(1 - Mathf.Pow(number - 1, 2));
+	}
+
+	private void Update()
+	{
+		if (m_isAirBorn && transform.position.y < WaterLevel) {
+			// When hook hits water, stop it.
+        	m_rigidbody.velocity = new Vector2(0.0f, 0.0f);
+            m_rigidbody.isKinematic = true;
+
+			m_isAirBorn = false;
+
+            // Store starting angle and distance from rod
+			float yOffset = transform.position.y - m_reelDestination.y;
+			float xOffset = transform.position.x - m_reelDestination.x;
+
+			m_currentAngleRadians = Mathf.Atan2(yOffset, xOffset);
+            m_hypotenuse = new Vector2(xOffset, yOffset).magnitude;
+
+            m_timeSinceLastSink = 0.0f;
+		}
+
+        bool isSinking = !m_isAirBorn && !m_isReeling;
+        if (!isSinking)
+        {
+            return;
+        }
+
+        bool continueRotating =
+            (m_sinkClockwise && transform.position.x > m_reelDestination.x)
+            || (!m_sinkClockwise && transform.position.x < m_reelDestination.x);
+        if (continueRotating)
+        {
+			float direction = m_sinkClockwise ? -1 : 1;
+			m_currentAngleRadians += 0.5f * direction * Time.deltaTime;
+		}
+
+        float newYOffset = Mathf.Sin(m_currentAngleRadians) * m_hypotenuse;
+        float newXOffset = Mathf.Cos(m_currentAngleRadians) * m_hypotenuse;
+
+        m_timeSinceLastSink += Time.deltaTime;
+        m_timeSinceLastSink = Mathf.Clamp(m_timeSinceLastSink, 0.0f, 5.0f);
+
+        float extraYOffset = -3.0f * (m_timeSinceLastSink / 5);
+
+        transform.position = m_reelDestination + new Vector2(newXOffset, newYOffset + extraYOffset);
 	}
 }

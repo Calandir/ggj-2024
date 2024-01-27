@@ -43,7 +43,7 @@ public class FishingPlayer : MonoBehaviour
 	private Dictionary<FishingState, Sprite> spriteMap;
 
 	private FishingState __m_currentState = FishingState.Idle;
-	private FishingState m_currentState{
+	public FishingState m_currentState{
 		get
 		{
 			return __m_currentState;
@@ -82,7 +82,7 @@ public class FishingPlayer : MonoBehaviour
 				m_currentState = FishingState.ChargeCast;
 			}
 		}
-		if (m_currentState == FishingState.ChargeCast)
+		else if (m_currentState == FishingState.ChargeCast)
 		{
 			if (Input.GetKeyUp(m_inputKeyCode)) {
 				// When key is released, cast rod
@@ -98,7 +98,15 @@ public class FishingPlayer : MonoBehaviour
 		else if (m_currentState == FishingState.Cast)
 		{
 			m_fishhook.gameObject.SetActive(true);
-			m_fishhook.DropAt(m_fishhookDropLocation);
+
+			// Magic value so rod hook is not cast into space.
+			float scaledPower = CastPower / 18.0f;
+			float xDirection = m_fishhookDropLocation.x < 0 ? scaledPower : -scaledPower;
+			Vector2 velocity = new Vector2(xDirection, scaledPower);
+
+			bool sinkClockwise = m_playerNumber == 1 ? true : false;
+
+			m_fishhook.DropAt(m_fishhookDropLocation, sinkClockwise, velocity);
 			
 			m_currentState = FishingState.Sinking;
 
@@ -108,7 +116,7 @@ public class FishingPlayer : MonoBehaviour
 		{
 			if (Input.GetKeyDown(m_inputKeyCode))
 			{
-				m_fishhook.LerpTo(transform.position);
+				m_fishhook.LerpToReelDestination();
 
 				m_currentState = FishingState.Reel;
 			}
@@ -119,7 +127,7 @@ public class FishingPlayer : MonoBehaviour
 			{
 				// Finished reeling
 				m_fishhook.gameObject.SetActive(false);
-
+				CastPower = 0;
 				m_currentState = FishingState.Idle;
 			}
 		}
