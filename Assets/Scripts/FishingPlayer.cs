@@ -109,7 +109,10 @@ public class FishingPlayer : MonoBehaviour
 			float scaledPower = CastPower / 18.0f;
 			float xDirection = m_fishhookDropLocation.x < 0 ? scaledPower : -scaledPower;
 			Vector2 velocity = new Vector2(xDirection, scaledPower);
-			m_fishhook.DropAt(m_fishhookDropLocation, velocity);
+
+			bool sinkClockwise = m_playerNumber == 1 ? true : false;
+
+			m_fishhook.DropAt(m_fishhookDropLocation, sinkClockwise, velocity);
 			
 			m_currentState = FishingState.Sinking;
 
