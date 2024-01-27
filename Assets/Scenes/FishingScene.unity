@@ -224,10 +224,13 @@ MonoBehaviour:
   m_player: {fileID: 1230605681}
   m_collisionParentName: RedFish
   m_damageSprites:
+  - {fileID: 21300000, guid: cd8305fade7ad62478bc73025c508cc2, type: 3}
+  - {fileID: 21300000, guid: 53063aca6a458de40b1f8ff70581062d, type: 3}
+  - {fileID: 21300000, guid: 6afd7adba57977e418d26c3754c66b31, type: 3}
   - {fileID: 21300000, guid: 5ed872a941771f64885f720a2596f260, type: 3}
   m_spriteRenderer: {fileID: 220283297}
   m_health: 12
-  m_offsetWhenDamaged: {x: 0.2, y: -0.02}
+  m_offsetWhenDamaged: {x: -0.2, y: -0.02}
   m_damageAnimationTimeSeconds: 0.5
 --- !u!61 &220283300
 BoxCollider2D:
