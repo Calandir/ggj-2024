@@ -14,6 +14,9 @@ public class Fishhook : MonoBehaviour
     [SerializeField]
     private Rigidbody2D m_rigidbody;
 
+    [SerializeField]
+    private Vector2 m_reelDestination;
+
 	[SerializeField]
 	private float m_fishhookReelSpeedPerSecond = 1.0f;
 
@@ -26,13 +29,13 @@ public class Fishhook : MonoBehaviour
         m_rigidbody.velocity = Vector2.zero;
     }
 
-    public void LerpTo(Vector2 destination)
+    public void LerpToReelDestination()
     {
-		Vector2 distanceToTravel = (Vector2)transform.position - destination;
+		Vector2 distanceToTravel = (Vector2)transform.position - m_reelDestination;
 
         float totalTravelTime = distanceToTravel.magnitude / m_fishhookReelSpeedPerSecond;
 
-        StartCoroutine(ReelRoutine(Time.time, totalTravelTime, transform.position, destination));
+        StartCoroutine(ReelRoutine(Time.time, totalTravelTime, transform.position, m_reelDestination));
     }
 
     private IEnumerator ReelRoutine(float startTime, float reelTime, Vector2 start, Vector2 finish)

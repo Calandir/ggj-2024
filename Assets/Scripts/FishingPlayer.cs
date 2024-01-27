@@ -108,7 +108,7 @@ public class FishingPlayer : MonoBehaviour
 		{
 			if (Input.GetKeyDown(m_inputKeyCode))
 			{
-				m_fishhook.LerpTo(transform.position);
+				m_fishhook.LerpToReelDestination();
 
 				m_currentState = FishingState.Reel;
 			}
