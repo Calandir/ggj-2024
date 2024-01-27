@@ -11,6 +11,12 @@ public class FishingPlayer : MonoBehaviour
 	[SerializeField]
 	private int m_playerNumber = 1;
 
+	[SerializeField]
+	private Fishhook m_fishhook;
+
+	[SerializeField]
+	private Vector2 m_fishhookDropLocation;
+
 	// Cast power between 0 - 100.
 	public float CastPower = 0;
 	// How fast it takes to charge max power in seconds.
@@ -27,6 +33,11 @@ public class FishingPlayer : MonoBehaviour
 	}
 
 	private FishingState m_currentState = FishingState.ChargeCast;
+
+	private void Start()
+	{
+		m_fishhook.gameObject.SetActive(false);
+	}
 
 	private void Update()
 	{
@@ -49,15 +60,22 @@ public class FishingPlayer : MonoBehaviour
 		}
 		else if (m_currentState == FishingState.Cast)
 		{
-
+			m_fishhook.gameObject.SetActive(true);
+			m_fishhook.DropAt(m_fishhookDropLocation);
+			
+			m_currentState = FishingState.Sinking;
 		}
 		else if (m_currentState == FishingState.Sinking)
 		{
+			// TODO wait for reel input
 
+			m_currentState = FishingState.Reel;
 		}
 		else if (m_currentState == FishingState.Reel)
 		{
+			// TODO wait for reel animation
 
+			m_currentState = FishingState.ChargeCast;
 		}
 	}
 }
