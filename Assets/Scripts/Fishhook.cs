@@ -8,7 +8,7 @@ public class Fishhook : MonoBehaviour
 
     public FishingPlayer FishingPlayer => m_fishingPlayer;
 
-	private float WaterLevel;
+	public float WaterLevel;
 
 	[SerializeField]
     private FishingPlayer m_fishingPlayer;
