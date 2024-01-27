@@ -12,6 +12,15 @@ public class Boat : MonoBehaviour
 	private string m_collisionParentName = "FishesFromLeft";
 
 	[SerializeField]
+	private Sprite[] m_damageSprites;
+
+	[SerializeField]
+	private SpriteRenderer m_spriteRenderer;
+
+	[SerializeField]
+	private int m_health = 12;
+
+	[SerializeField]
 	private Vector2 m_offsetWhenDamaged = new Vector2(1.0f, -0.5f);
 
 	[SerializeField]
@@ -37,7 +46,14 @@ public class Boat : MonoBehaviour
 
 			if (m_showDamageRoutine == null)
 			{
-				//m_showDamageRoutine = StartCoroutine(ShowDamage());
+				m_health -= 1;
+				m_health = Mathf.Clamp(m_health, 0, int.MaxValue);
+
+				int spriteIndex = Mathf.RoundToInt(m_health / m_damageSprites.Length);
+
+				m_spriteRenderer.sprite = m_damageSprites[spriteIndex];
+
+				m_showDamageRoutine = StartCoroutine(ShowDamage());
 			}
 		}
 	}
@@ -52,9 +68,16 @@ public class Boat : MonoBehaviour
 		{
 			// 0 to 1
 			float progress = (Time.time - m_lastShowDamageStartTime) / m_damageAnimationTimeSeconds;
-			Debug.LogError(progress);
+			
+			// 0 to 2
+			progress *= 2;
 
-			// 0 to 1 to 0
+			// 0 to 1 to 0, so the lerp can undo
+			if (progress > 1.0f)
+			{
+				progress = 2 - progress;
+			}
+
 			float progressEased = (float)easeOutBounce(progress);
 
 			transform.position = Vector2.Lerp(m_basePosition, m_basePosition + m_offsetWhenDamaged, progressEased);
