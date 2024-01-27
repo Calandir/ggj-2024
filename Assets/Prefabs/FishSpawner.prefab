@@ -45,9 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fish: {fileID: 7140408597577547144, guid: 89bc242829c7f3848be4e7705cc460b4, type: 3}
-  longfish: {fileID: 5221778330358330486, guid: ee13268c6ca9abe459b174eb71295d4f, type: 3}
   bluefish: {fileID: 1502136315540377333, guid: 89992d9b5f667e04f9a918800eeb6176, type: 3}
   pinkfish: {fileID: 5954999235106888242, guid: 003695d1430f43e47bc14f9526fa2e71, type: 3}
   orangefish: {fileID: 3112380879911533073, guid: 0cb2d9376cc5e974fbea643729385508, type: 3}
   catfish: {fileID: 7352095092237454279, guid: a9b89c2b62938ae42a7e0e1325aa9fd6, type: 3}
+  longfishred: {fileID: 5221778330358330486, guid: ee13268c6ca9abe459b174eb71295d4f, type: 3}
+  longfishblue: {fileID: 2789245874088658624, guid: b7fc281e8a20d484eba8cb4d7271bcfb, type: 3}
+  longfishgreen: {fileID: 3015161481034328454, guid: 9cea2b11f61c6694ba19d849d01a3842, type: 3}
+  longfishyellow: {fileID: 5107108931403366001, guid: e20c2b304cc88af4d9a0b99bf510e483, type: 3}
+  longfishpurple: {fileID: 916378274247752948, guid: 4062d20f5a27e3a46910b486e7a7e3c0, type: 3}
+  longfishorange: {fileID: 8394400515733256564, guid: 3c8bd909c1d84d442ac28802eec185b0, type: 3}
+  longfishcyan: {fileID: 6176454813938109699, guid: bf442a070b12be74eb8ad0c26b4a430b, type: 3}
   facingRight: 0
