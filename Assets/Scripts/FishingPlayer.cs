@@ -11,6 +11,12 @@ public class FishingPlayer : MonoBehaviour
 	public FishingState CurrentState => m_currentState;
 
 	[SerializeField]
+	public int fishOnTheLine = 0;
+
+	[SerializeField]
+	public int fishTotal = 0;
+
+	[SerializeField]
 	private int m_playerNumber = 1;
 
 	[SerializeField]
@@ -123,6 +129,9 @@ public class FishingPlayer : MonoBehaviour
 			if (!m_fishhook.IsReeling)
 			{
 				// Finished reeling
+				fishTotal += fishOnTheLine;
+				fishOnTheLine = 0;
+
 				m_fishhook.gameObject.SetActive(false);
 				CastPower = 0;
 				m_currentState = FishingState.Idle;
