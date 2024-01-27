@@ -47,7 +47,7 @@ public class Fishhook : MonoBehaviour
 
 		while (Time.time < finishTime)
         {
-            float progress = (Time.time - startTime) / reelTime;
+            float progress = Easing((Time.time - startTime) / reelTime);
 
             transform.position = Vector2.Lerp(start, finish, progress);
 
@@ -56,5 +56,10 @@ public class Fishhook : MonoBehaviour
 
         m_isReeling = false;
 		m_rigidbody.isKinematic = false;
+	}
+
+    private float Easing(float number)
+    {
+		return Mathf.Sqrt(1 - Mathf.Pow(number - 1, 2));
 	}
 }
