@@ -8,20 +8,23 @@ public class SpawnFish : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("Spawn", 0, 2);
+        if (facingRight) {InvokeRepeating("Spawn", 0, 2);}
+        else             {InvokeRepeating("Spawn", 1, 2);}
         startPosition = transform.position;
     }
 
     void Spawn()
     {
         GameObject instantiatedFish = Instantiate(fish, transform.position, Quaternion.identity);
-        instantiatedFish.GetComponent<FishMover>().facingRight = facingRight;
+        instantiatedFish.GetComponent<FishMover>().SetDirection(facingRight);
     }
 
     void FixedUpdate()
     {
         Vector2 position = transform.position;
-        position.y = startPosition.y + Mathf.Sin(Time.time) * 2;
+        if (facingRight) {position.y = startPosition.y + Mathf.Sin(Time.time) * 2;}
+        else             {position.y = startPosition.y + Mathf.Cos(Time.time) * 2;}
+        
         transform.position = position;
     }
 }

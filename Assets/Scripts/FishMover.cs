@@ -37,13 +37,19 @@ public class FishMover : MonoBehaviour
 	private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        if (facingRight == false)
+        SetDirection(facingRight);
+    }
+    
+    public void SetDirection(bool directionIsRight)
+    {if (directionIsRight)
             {
-                transform.localScale = new UnityEngine.Vector2(-0.7f, 0.7f);
+                facingRight = true;
+                transform.localScale = new UnityEngine.Vector2(0.7f, 0.7f);
             }
         else
             {
-                transform.localScale = new UnityEngine.Vector2(0.7f, 0.7f);
+                facingRight = false;
+                transform.localScale = new UnityEngine.Vector2(-0.7f, 0.7f);
             }
     }
     
