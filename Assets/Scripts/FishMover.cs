@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Numerics;
 using UnityEngine;
 
@@ -7,8 +8,33 @@ public class FishMover : MonoBehaviour
     [SerializeField] public bool facingRight;
     [SerializeField] public float speed;
 
+    [SerializeField]
+    private BoxCollider2D m_boxCollider;
 
-    private void Awake()
+	public void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.tag == "Fishhook")
+        {
+            transform.SetParent(other.transform);
+
+            body.isKinematic = true;
+            m_boxCollider.enabled = false;
+
+            Fishhook fishhook = other.GetComponent<Fishhook>();
+
+            // Start on other object so the routine isn't interruptible if this is turned off
+            fishhook.FishingPlayer.StartCoroutine(WaitToBeCollected(fishhook.FishingPlayer));
+        }
+	}
+
+    private IEnumerator WaitToBeCollected(FishingPlayer player)
+    {
+        yield return new WaitUntil(() => player.CurrentState == FishingPlayer.FishingState.Idle);
+
+        Destroy(gameObject);
+    }
+
+	private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         if (facingRight == false)
@@ -31,5 +57,9 @@ public class FishMover : MonoBehaviour
         {
             body.velocity = new UnityEngine.Vector2(UnityEngine.Vector2.left.x * speed, body.velocity.y);
         }     
+        if (transform.position.x > 15 || transform.position.x < -15)
+        {
+            Destroy(gameObject);
+        }
     }
 }

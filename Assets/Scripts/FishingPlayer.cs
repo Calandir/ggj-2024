@@ -8,6 +8,8 @@ using System.Text;
 
 public class FishingPlayer : MonoBehaviour
 {
+	public FishingState CurrentState => m_currentState;
+
 	[SerializeField]
 	private int m_playerNumber = 1;
 
@@ -17,6 +19,9 @@ public class FishingPlayer : MonoBehaviour
 	[SerializeField]
 	private Vector2 m_fishhookDropLocation;
 
+	[SerializeField]
+	private SpriteRenderer spriteRenderer;
+
 	// Cast power between 0 - 100.
 	public float CastPower = 0;
 	// How fast it takes to charge max power in seconds.
@@ -24,30 +29,68 @@ public class FishingPlayer : MonoBehaviour
 
 	public enum FishingState
 	{
+		Idle,
 		ChargeCast,
 		Cast,
 		Sinking,
 		Reel,
 	}
 
-	private FishingState m_currentState = FishingState.ChargeCast;
+
+	[SerializeField]
+	private Sprite blueFisherman, blueFishermanCast;
+
+	private Dictionary<FishingState, Sprite> spriteMap;
+
+	private FishingState __m_currentState = FishingState.Idle;
+	private FishingState m_currentState{
+		get
+		{
+			return __m_currentState;
+		}
+		set
+		{
+			// When state is set, update sprite to reflect new state.
+			this.__m_currentState = value;
+			spriteRenderer.sprite = spriteMap[this.__m_currentState];
+		}
+	}
+
+	private KeyCode m_inputKeyCode;
 
 	private void Start()
 	{
 		m_fishhook.gameObject.SetActive(false);
+
+		spriteMap = new Dictionary<FishingState, Sprite>(){
+			{FishingState.Idle, blueFisherman},
+			{FishingState.ChargeCast, blueFishermanCast},
+			{FishingState.Cast, blueFisherman},
+			{FishingState.Sinking, blueFisherman},
+			{FishingState.Reel, blueFisherman}
+		};
+		spriteRenderer.sprite = spriteMap[m_currentState];
+
+		m_inputKeyCode = m_playerNumber == 1 ? KeyCode.LeftShift : KeyCode.RightShift;
 	}
 
 	private void Update()
 	{
+		if (m_currentState == FishingState.Idle)
+		{
+			if (Input.GetKeyDown(m_inputKeyCode)) {
+				m_currentState = FishingState.ChargeCast;
+			}
+		}
 		if (m_currentState == FishingState.ChargeCast)
 		{
-			if (Input.GetKeyUp(KeyCode.Space)) {
-				// When space bar is released, cast rod
+			if (Input.GetKeyUp(m_inputKeyCode)) {
+				// When key is released, cast rod
 				m_currentState = FishingState.Cast;
 			}
 
-			if (Input.GetKey(KeyCode.Space)) {
-				// While space bar is held down, increase cast power.
+			if (Input.GetKey(m_inputKeyCode)) {
+				// While key is held down, increase cast power.
 				CastPower += 1.0f / (CastChargeSpeed / 100.0f) * Time.deltaTime;
 				CastPower = Mathf.Clamp(CastPower, 0.0f, 100.0f);
 			}
@@ -63,9 +106,9 @@ public class FishingPlayer : MonoBehaviour
 		}
 		else if (m_currentState == FishingState.Sinking)
 		{
-			if (Input.GetKeyDown(KeyCode.Space))
+			if (Input.GetKeyDown(m_inputKeyCode))
 			{
-				m_fishhook.LerpTo(transform.position);
+				m_fishhook.LerpToReelDestination();
 
 				m_currentState = FishingState.Reel;
 			}
@@ -77,7 +120,7 @@ public class FishingPlayer : MonoBehaviour
 				// Finished reeling
 				m_fishhook.gameObject.SetActive(false);
 
-				m_currentState = FishingState.ChargeCast;
+				m_currentState = FishingState.Idle;
 			}
 		}
 	}
