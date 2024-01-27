@@ -14,7 +14,8 @@ public class SpawnFish : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(fish, transform.position, Quaternion.identity);
+        GameObject instantiatedFish = Instantiate(fish, transform.position, Quaternion.identity);
+        instantiatedFish.GetComponent<FishMover>().facingRight = facingRight;
     }
 
     void FixedUpdate()
