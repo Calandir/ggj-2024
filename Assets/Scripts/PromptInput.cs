@@ -31,7 +31,6 @@ public class PromptInput : MonoBehaviour
         // Once player has pressed input, stop tutorial.
         for (int i = 0; i < keyList.Length; i++) {
             if (Input.GetKey(keyList[i])) {
-                Debug.Log("STOP!");
                 gameObject.SetActive(false);
                 break;
             }
