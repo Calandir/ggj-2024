@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TransitionScene.unity
     guid: 36dd5940fbd6a0d4ab4415f9833451b5
+  - enabled: 1
+    path: Assets/Scenes/FishingScene.unity
+    guid: 0936c3c7976d13440b165594a8c046f5
   m_configObjects: {}
