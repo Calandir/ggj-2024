@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float m_transitionDelayTime = 1.0f;
 
+    [SerializeField]
+    private Canvas m_canvas;
+
     private string m_previousScene = null;
 
 	// Start is called before the first frame update
@@ -34,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadSceneWithTransition(string sceneName)
     {
+        m_canvas.gameObject.SetActive(false);
+
         StartCoroutine(TransitionRoutine(sceneName));
     }
 
