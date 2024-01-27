@@ -11,23 +11,6 @@ public class FishingPlayer : MonoBehaviour
 	public FishingState CurrentState => m_currentState;
 
 	[SerializeField]
-	public int fishOnTheLine = 0;
-
-	private int __fishTotal = 0;
-	[SerializeField]
-	public int fishTotal {
-		get
-		{
-			return __fishTotal;
-		}
-		set
-		{
-			// When fish total is set, check new value to update fish pile sprite.
-			this.__fishTotal = value;
-		}
-	}
-
-	[SerializeField]
 	private int m_playerNumber = 1;
 
 	[SerializeField]
@@ -73,6 +56,51 @@ public class FishingPlayer : MonoBehaviour
 		}
 	}
 
+	[SerializeField]
+	public int fishOnTheLine = 0;
+
+	public SpriteRenderer fishPileRenderer;
+	public Sprite
+		fishBasket0,
+		fishBasket1,
+		fishBasket2,
+		fishBasket3,
+		fishBasket4,
+		fishBasket5,
+		fishBasket6,
+		fishBasket7,
+		fishBasket8,
+		fishBasket9;
+
+	private Sprite[] fishSprites;
+
+	private int __fishTotal = 0;
+	[SerializeField]
+	public int fishTotal {
+		get
+		{
+			return __fishTotal;
+		}
+		set
+		{
+			// When fish total is set, check new value to update fish pile sprite.
+			this.__fishTotal = value;
+			// Assign baskets at an ever increasing difference of fish given by fibonacci sequence.
+			int a = 0, b = 1;
+			int i = 0;
+			for (i = 0; i < 10; i++) {
+				int c = a + b; 
+				if (this.__fishTotal < c) {
+					break;
+				}
+				a = b;
+				b = c;
+			}
+			fishPileRenderer.sprite = fishSprites[i];
+		}
+	}
+
+
 	private KeyCode m_inputKeyCode;
 
 	private void Start()
@@ -86,6 +114,9 @@ public class FishingPlayer : MonoBehaviour
 			{FishingState.Sinking, blueFisherman},
 			{FishingState.Reel, blueFisherman}
 		};
+
+		fishSprites = new Sprite[10]{fishBasket0, fishBasket1, fishBasket2, fishBasket3, fishBasket4, fishBasket5, fishBasket6, fishBasket7, fishBasket8, fishBasket9};
+
 		spriteRenderer.sprite = spriteMap[m_currentState];
 
 		m_inputKeyCode = m_playerNumber == 1 ? KeyCode.LeftShift : KeyCode.RightShift;
