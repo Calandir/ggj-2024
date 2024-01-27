@@ -103,6 +103,9 @@ public class FishingPlayer : MonoBehaviour
 
 	private KeyCode m_inputKeyCode;
 
+	[SerializeField]
+	private FishMonger m_fishMonger;
+
 	private void Start()
 	{
 		m_fishhook.gameObject.SetActive(false);
@@ -124,6 +127,16 @@ public class FishingPlayer : MonoBehaviour
 
 	private void Update()
 	{
+		// Can throw at any time
+		if (m_playerNumber == 1 && Input.GetKeyDown(KeyCode.Z))
+		{
+			m_fishMonger.launchBlueFish();
+		}
+		if (m_playerNumber == 2 && Input.GetKeyDown(KeyCode.Slash))
+		{
+			m_fishMonger.launchRedFish();
+		}
+
 		if (m_currentState == FishingState.Idle)
 		{
 			if (Input.GetKeyDown(m_inputKeyCode)) {
