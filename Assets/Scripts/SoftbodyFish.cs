@@ -82,7 +82,9 @@ public class SoftbodyFish : MonoBehaviour
 			collider.radius = 0.5f;
 			collider.isTrigger = true;
 
-			Bone.AddComponent<FishCollider>().team = transform.parent.name;
+			FishCollider CollideScript = Bone.AddComponent<FishCollider>();
+			CollideScript.team = transform.parent.name;
+			CollideScript.Head = Bones[0];
 		}
 
 		Bones[0].GetComponent<Rigidbody2D>().velocity = startVelocity;
@@ -117,7 +119,7 @@ public class SoftbodyFish : MonoBehaviour
 			aim.Normalize();
 
 			Rigidbody2D headRB = Bones[0].GetComponent<Rigidbody2D>();
-			float thrustFactor = 10;
+			float thrustFactor = 8;
 			if ((headRB.velocity + aim).magnitude < headRB.velocity.magnitude)
 			{
 				thrustFactor *= 3;
