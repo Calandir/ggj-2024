@@ -106,8 +106,9 @@ public class Boat : MonoBehaviour
 			Destroy(collision.transform.parent.gameObject);
 
 			m_player.ShowDamageSprite();
+            SFXSingleton.Instance.PlayThunkSFX();
 
-			if (m_showDamageRoutine == null)
+            if (m_showDamageRoutine == null)
 			{
 				m_health -= 1;
 				m_health = Mathf.Clamp(m_health, 0, int.MaxValue);

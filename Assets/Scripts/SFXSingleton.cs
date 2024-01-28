@@ -15,7 +15,7 @@ public class SFXSingleton : MonoBehaviour
 	public AudioClip SplashClip2;
 	public AudioClip SplashClip3;
 
-	public AudioClip ReleaseLineClip;
+	public AudioClip RodClip;
 
 	public AudioClip ThunkClip1;
 	public AudioClip ThunkClip2;
@@ -47,9 +47,14 @@ public class SFXSingleton : MonoBehaviour
 	{
 		int random = Random.Range(0, clips.Length);
 		AudioSource.PlayOneShot(clips[random], volumeScale);
-	}
+    }
 
-	public void PlayPlipSFX(float volumeScale = 1.0f)
+    public void PlayRodSFX(float volumeScale = 1.0f)
+    {
+        AudioSource.PlayOneShot(RodClip, volumeScale);
+    }
+
+    public void PlayPlipSFX(float volumeScale = 1.0f)
 	{
 		PlayRandomSFX(m_plipClips, volumeScale);
 	}

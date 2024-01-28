@@ -156,6 +156,7 @@ public class FishingPlayer : MonoBehaviour
 			if (Input.GetKeyUp(m_inputKeyCode)) {
 				// When key is released, cast rod
 				m_currentState = FishingState.Cast;
+				SFXSingleton.Instance.PlayPlipSFX();
 			}
 
 			if (Input.GetKey(m_inputKeyCode)) {

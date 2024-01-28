@@ -69,6 +69,7 @@ public class Fishhook : MonoBehaviour
             yield return null;
         }
 
+        SFXSingleton.Instance.PlaySplashSFX();
         m_isReeling = false;
 		m_rigidbody.isKinematic = false;
 	}
