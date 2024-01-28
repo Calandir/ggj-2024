@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class FishMonger : MonoBehaviour
 {
 	public Camera activeCamera;
-	public GameObject FishTemplate;
+	public GameObject FishTemplateA;
+	public GameObject FishTemplateB;
 
 	[SerializeField]
 	private bool m_throwFishOnStart = true;
@@ -43,15 +45,23 @@ public class FishMonger : MonoBehaviour
 
 	public void launchRedFish()
 	{
-		launchFish(RedFish, -150, 50, false, SoftbodyFish.ControlScheme.Arrows);
+		launchFish(RedFish, -150, 50, true, SoftbodyFish.ControlScheme.Arrows);
 	}
 
 	void launchFish(Transform parent, float angle, float speed, bool flipped, SoftbodyFish.ControlScheme controls)
 	{
-		GameObject Fish = Instantiate(FishTemplate, parent);
-		SoftbodyFish FishScript = Fish.GetComponent<SoftbodyFish>();
+		GameObject Fish;
 
-		Fish.GetComponent<SpriteRenderer>().flipY = flipped;
+		if (flipped)
+		{
+			Fish = Instantiate(FishTemplateB, parent);
+		}
+        else
+        {
+			Fish = Instantiate(FishTemplateA, parent);
+		}
+
+        SoftbodyFish FishScript = Fish.GetComponent<SoftbodyFish>();
 
 		FishScript.controls = controls;
 		FishScript.startPosition = parent.position;
@@ -65,7 +75,7 @@ public class FishMonger : MonoBehaviour
 		position = activeCamera.WorldToViewportPoint(position);
 
 		float buffer = 0.2f;
-		if(position.x < -buffer || position.x > 1+buffer || position.y < buffer || position.y > 1 + buffer)
+		if(position.x < -buffer || position.x > 1+buffer || position.y < 0 -buffer || position.y > 1 + buffer)
 		{
 			Destroy(Fish.gameObject);
 		}
