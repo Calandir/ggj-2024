@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueWin
       objectReference: {fileID: 0}
+    - target: {fileID: 1008503135746634340, guid: df2c599474fed124a96ec489664614a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1175785585572613237, guid: df2c599474fed124a96ec489664614a3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -666,7 +670,7 @@ MonoBehaviour:
   - {fileID: 299186774}
   - {fileID: 84875811}
   m_flipOnDefeat: 1
-  m_victoryUI: {fileID: 1736953}
+  m_victoryUI: {fileID: 2001564076}
 --- !u!1001 &282769230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3034,7 +3038,7 @@ MonoBehaviour:
   - {fileID: 932812405}
   - {fileID: 2073160261}
   m_flipOnDefeat: 0
-  m_victoryUI: {fileID: 2001564076}
+  m_victoryUI: {fileID: 1736953}
 --- !u!1001 &1859137985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3274,6 +3278,10 @@ PrefabInstance:
     - target: {fileID: 1987788663714841668, guid: 63734a882ff92344eab632492f5765b6, type: 3}
       propertyPath: m_Name
       value: RedWin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987788663714841668, guid: 63734a882ff92344eab632492f5765b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2069805213846146442, guid: 63734a882ff92344eab632492f5765b6, type: 3}
       propertyPath: m_Pivot.x
