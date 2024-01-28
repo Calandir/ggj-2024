@@ -17,6 +17,7 @@ public class SpawnFish : MonoBehaviour
     public GameObject longfishcyan;
 
     [SerializeField] public bool facingRight;
+    private bool isFightTime = false;
     Vector2 startPosition;
 
     void Start()
@@ -88,6 +89,7 @@ public class SpawnFish : MonoBehaviour
         
         GameObject instantiatedFish = Instantiate(fishToSpawn, transform.position, Quaternion.identity);
         instantiatedFish.GetComponent<FishMover>().SetDirection(facingRight);
+        if (isFightTime) {instantiatedFish.GetComponent<FishMover>().SetFight();}
     }
 
     void FixedUpdate()
@@ -97,5 +99,10 @@ public class SpawnFish : MonoBehaviour
         else             {position.y = startPosition.y + Mathf.Cos(Time.time) * 3 - 1;}
         
         transform.position = position;
+    }
+
+    public void SetFight()
+    {
+        isFightTime = true;
     }
 }

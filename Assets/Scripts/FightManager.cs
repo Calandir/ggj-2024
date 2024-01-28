@@ -7,7 +7,7 @@ public class FightCountdown : MonoBehaviour
 {
     public float FightTimeStart;
 
-    public GameObject player1FightTutorial, player2FightTutorial, player1FishTutorial, player2FishTutorial, fightTitle;
+    public GameObject player1FightTutorial, player2FightTutorial, player1FishTutorial, player2FishTutorial, fightTitle, fishSpawnerL, fishSpawnerR;
 
     public DayCycle backgroundSky;
     public WaterColourer water;
@@ -95,6 +95,9 @@ public class FightCountdown : MonoBehaviour
         player2FishTutorial.SetActive(false);
         player1FightTutorial.SetActive(true);
         player2FightTutorial.SetActive(true);
+        fishSpawnerL.GetComponent<SpawnFish>().SetFight();
+        fishSpawnerR.GetComponent<SpawnFish>().SetFight();
+        
 
 		m_showTitleRoutine = StartCoroutine(ShowTitle());
     }
