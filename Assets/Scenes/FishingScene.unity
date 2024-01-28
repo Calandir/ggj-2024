@@ -2457,7 +2457,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCamera: {fileID: 519420031}
-  FishTemplate: {fileID: 1772768236004216072, guid: 9bbeec555730eb543954be7da8ff1fd3, type: 3}
+  FishTemplateA: {fileID: 1772768236004216072, guid: 9bbeec555730eb543954be7da8ff1fd3, type: 3}
+  FishTemplateB: {fileID: 1772768236004216072, guid: d146369478831364f82375b06cd66a1e, type: 3}
   m_throwFishOnStart: 0
 --- !u!4 &1970628412
 Transform:
