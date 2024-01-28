@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boat : MonoBehaviour
@@ -31,9 +30,21 @@ public class Boat : MonoBehaviour
 
 	private Vector2 m_basePosition;
 
+	private float m_yBob;
+
 	private void Start()
 	{
 		m_basePosition = transform.position;
+	}
+
+	private void Update()
+	{
+		m_yBob = Mathf.Sin(Time.time / 1.5f) * 0.175f;
+		
+		if (m_showDamageRoutine == null)
+		{
+			transform.position = m_basePosition + new Vector2(0.0f, m_yBob);
+		}
 	}
 
 	public void OnTriggerEnter2D(Collider2D collision)
@@ -80,7 +91,8 @@ public class Boat : MonoBehaviour
 
 			float progressEased = (float)easeOutBounce(progress);
 
-			transform.position = Vector2.Lerp(m_basePosition, m_basePosition + m_offsetWhenDamaged, progressEased);
+			transform.position = new Vector2(0.0f, m_yBob) + Vector2.Lerp(m_basePosition, m_basePosition + m_offsetWhenDamaged, progressEased);
+
 			yield return null;
 		}
 
