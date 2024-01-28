@@ -303,6 +303,8 @@ GameObject:
   m_Component:
   - component: {fileID: 220283298}
   - component: {fileID: 220283297}
+  - component: {fileID: 220283300}
+  - component: {fileID: 220283299}
   m_Layer: 0
   m_Name: boat_blue
   m_TagString: Untagged
@@ -378,6 +380,74 @@ Transform:
   - {fileID: 1230605682}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &220283299
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220283296}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.79, y: 1.54}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.65, y: 3.3}
+    newSize: {x: 7.65, y: 3.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.65, y: 3.3}
+  m_EdgeRadius: 0
+--- !u!114 &220283300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220283296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbdef458285b5fa449ee8f3436afa6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_player: {fileID: 1230605681}
+  m_collisionParentName: RedFish
+  m_damageSprites:
+  - {fileID: 21300000, guid: cd8305fade7ad62478bc73025c508cc2, type: 3}
+  - {fileID: 21300000, guid: 53063aca6a458de40b1f8ff70581062d, type: 3}
+  - {fileID: 21300000, guid: 6afd7adba57977e418d26c3754c66b31, type: 3}
+  - {fileID: 21300000, guid: 5ed872a941771f64885f720a2596f260, type: 3}
+  m_spriteRenderer: {fileID: 220283297}
+  m_health: 12
+  m_offsetWhenDamaged: {x: -0.2, y: -0.1}
+  m_damageAnimationTimeSeconds: 0.5
 --- !u!1001 &282769230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -999,11 +1069,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9024013899648378253, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.940001
+      value: 1.73
       objectReference: {fileID: 0}
     - target: {fileID: 9024013899648378253, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1599998
+      value: 1.34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1554,11 +1624,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9024013899648378253, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.9800005
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 9024013899648378253, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3400002
+      value: 1.34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2279,6 +2349,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1816505573}
   - component: {fileID: 1816505572}
+  - component: {fileID: 1816505575}
+  - component: {fileID: 1816505574}
   m_Layer: 0
   m_Name: boat_red
   m_TagString: Untagged
@@ -2354,6 +2426,74 @@ Transform:
   - {fileID: 697518521}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1816505574
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816505571}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.65, y: 3.3}
+    newSize: {x: 7.65, y: 3.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.65, y: 3.3}
+  m_EdgeRadius: 0
+--- !u!114 &1816505575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816505571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbdef458285b5fa449ee8f3436afa6a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_player: {fileID: 1634737475}
+  m_collisionParentName: BlueFish
+  m_damageSprites:
+  - {fileID: 21300000, guid: 6090b53ce55744f169185cf97858fe8e, type: 3}
+  - {fileID: 21300000, guid: 32480d05a1ce447b99da398f2caec24c, type: 3}
+  - {fileID: 21300000, guid: 5094b8ddb8ef04f7ca1a1fe99ab9330b, type: 3}
+  - {fileID: 21300000, guid: 50df571ff4b60dd4ab557c29f43cd276, type: 3}
+  m_spriteRenderer: {fileID: 1816505572}
+  m_health: 12
+  m_offsetWhenDamaged: {x: 0.2, y: -0.1}
+  m_damageAnimationTimeSeconds: 0.5
 --- !u!1001 &1859137985
 PrefabInstance:
   m_ObjectHideFlags: 0
