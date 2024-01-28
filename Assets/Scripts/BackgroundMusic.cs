@@ -9,8 +9,6 @@ public class BackgroundMusic : MonoBehaviour
 	[SerializeField]
 	private AudioClip m_combatSong;
 
-	private static BackgroundMusic s_instance = null;
-
 	private void Awake()
 	{
 		AudioSource src = GetComponent<AudioSource>();
