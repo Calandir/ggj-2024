@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae21e75ed8e9411086365f7fd9fcea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FightTimeStart: 2
+  FightTimeStart: 20
   player1FightTutorial: {fileID: 1151210985}
   player2FightTutorial: {fileID: 632414083}
   player1FishTutorial: {fileID: 407012748}
@@ -854,7 +854,7 @@ Transform:
   m_GameObject: {fileID: 521188873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -3.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3067,11 +3067,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4040373406647416512, guid: 6828900aff8a14486a754bc37de6958f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -697
+      value: -701.5
       objectReference: {fileID: 0}
     - target: {fileID: 4040373406647416512, guid: 6828900aff8a14486a754bc37de6958f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 333
+      value: 333.9
       objectReference: {fileID: 0}
     - target: {fileID: 4040373406647416512, guid: 6828900aff8a14486a754bc37de6958f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
