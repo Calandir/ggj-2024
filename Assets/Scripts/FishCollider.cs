@@ -5,12 +5,14 @@ using UnityEngine;
 public class FishCollider : MonoBehaviour
 {
 	public string team = "Unassigned";
+	GameObject HitMarkerTemplate;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+		HitMarkerTemplate = Resources.Load("Prefabs/HitMarker") as GameObject;
+		print(HitMarkerTemplate);
+	}
 
     // Update is called once per frame
     void Update()
@@ -36,6 +38,8 @@ public class FishCollider : MonoBehaviour
 				if (Time.time - lastStrongCollision > 0.5 && selfRB.velocity.magnitude < otherRB.velocity.magnitude)
 				{
 					otherRB.AddForce((selfRB.velocity-otherRB.velocity).normalized*500, ForceMode2D.Impulse);
+					print("spawning");
+					Instantiate(HitMarkerTemplate, transform.position, Quaternion.identity);
 					lastStrongCollision = Time.time;
 				}
 			}
