@@ -8,6 +8,9 @@ public class FishMover : MonoBehaviour
     [SerializeField] public bool facingRight;
     [SerializeField] public float speed;
 
+    private float wiggleSpeed = 0.4f;
+    private float wiggleAmount = 0.1f;
+
     [SerializeField]
     private BoxCollider2D m_boxCollider;
 
@@ -46,7 +49,7 @@ public class FishMover : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         SetDirection(facingRight);
-        InvokeRepeating("Wiggle", 0, 0.4f);
+        InvokeRepeating("Wiggle", 0, wiggleSpeed);
     }
     
     public void SetDirection(bool directionIsRight)
@@ -66,8 +69,8 @@ public class FishMover : MonoBehaviour
         if (m_isHooked) {
             return;
         }
-        float randX = UnityEngine.Random.Range(-0.1f, 0.1f);
-        float randY = UnityEngine.Random.Range(-0.1f, 0.1f);
+        float randX = UnityEngine.Random.Range(wiggleAmount * -1, wiggleAmount);
+        float randY = UnityEngine.Random.Range(wiggleAmount * -1, wiggleAmount);
         randX += transform.position.x;
         if (transform.position.y > -0.5) {randY = -0.1f;}
         else if (transform.position.y < -7.5) {randY = 0.1f;}
@@ -94,5 +97,13 @@ public class FishMover : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SetFight()
+    {
+        CancelInvoke();
+        wiggleSpeed = 0.05f;
+        wiggleAmount = 0.1f;
+        InvokeRepeating("Wiggle", 0, wiggleSpeed);
     }
 }
