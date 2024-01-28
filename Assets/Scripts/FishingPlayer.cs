@@ -102,7 +102,7 @@ public class FishingPlayer : MonoBehaviour
 			fishPileRenderer.sprite = fishSprites[i];
 		}
 	}
-
+	public static bool s_blockAllInput = false;
 
 	private KeyCode m_inputKeyCode;
 
@@ -111,6 +111,8 @@ public class FishingPlayer : MonoBehaviour
 
 	private void Start()
 	{
+		s_blockAllInput = false;
+
 		m_fishhook.gameObject.SetActive(false);
 
 		spriteMap = new Dictionary<FishingState, Sprite>(){
@@ -131,7 +133,7 @@ public class FishingPlayer : MonoBehaviour
 
 	private void Update()
 	{
-		if (m_currentState == FishingState.Defeated)
+		if (s_blockAllInput || m_currentState == FishingState.Defeated)
 		{
 			return;
 		}

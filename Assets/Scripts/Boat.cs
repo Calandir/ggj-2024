@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Boat : MonoBehaviour
 {
@@ -37,6 +38,9 @@ public class Boat : MonoBehaviour
 	[SerializeField]
 	private bool m_flipOnDefeat;
 
+	[SerializeField]
+	private GameObject m_victoryUI;
+
 	private Coroutine m_showDamageRoutine = null;
 	private float m_lastShowDamageStartTime;
 
@@ -49,6 +53,7 @@ public class Boat : MonoBehaviour
 		m_basePosition = transform.position;
 
 		m_splash.SetActive(false);
+		m_victoryUI.SetActive(false);
 	}
 
 	private void Update()
@@ -87,6 +92,16 @@ public class Boat : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 
 		m_splash.SetActive(false);
+
+		yield return new WaitForSeconds(2.5f);
+
+		FishingPlayer.s_blockAllInput = true;
+		m_victoryUI.SetActive(true);
+	}
+
+	public void TransitionToMainMenu()
+	{
+		SceneManager.LoadSceneAsync("MainMenu");
 	}
 
 	public void OnTriggerEnter2D(Collider2D collision)
