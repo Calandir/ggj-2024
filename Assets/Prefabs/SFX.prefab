@@ -52,7 +52,9 @@ MonoBehaviour:
   SplashClip1: {fileID: 8300000, guid: aca4896b7d08d1f46b614d6845197564, type: 3}
   SplashClip2: {fileID: 8300000, guid: ef13b69f48af23347b8d0fe48e84dfa6, type: 3}
   SplashClip3: {fileID: 8300000, guid: 828306442339ce64caa4c17992869109, type: 3}
-  RodClip: {fileID: 8300000, guid: b6b19df1ba67f4943ac914d064c89668, type: 3}
+  LineStretchClip1: {fileID: 8300000, guid: ad73908e6beb37e4f9316f823e7e20ee, type: 3}
+  LineStretchClip2: {fileID: 8300000, guid: d1b21fc497597a846b786f93076e72f0, type: 3}
+  LineStretchClip3: {fileID: 8300000, guid: 684b801d0a5512c448212e45173f43c5, type: 3}
   ThunkClip1: {fileID: 8300000, guid: 9c91e11c0a21b2644a9295fd1da81678, type: 3}
   ThunkClip2: {fileID: 8300000, guid: d58f855b5949fee45be6226f16229ae8, type: 3}
   ThunkClip3: {fileID: 8300000, guid: 048da3155dff2dc419438c54d65348fc, type: 3}
