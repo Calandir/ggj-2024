@@ -101,7 +101,7 @@ public class Boat : MonoBehaviour
 
 	public void TransitionToMainMenu()
 	{
-		SceneManager.LoadSceneAsync("MainMenu");
+		SceneManager.LoadScene("FishingScene");
 	}
 
 	public void OnTriggerEnter2D(Collider2D collision)
