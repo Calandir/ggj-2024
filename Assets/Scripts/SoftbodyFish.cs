@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
+using UnityEngine.XR;
 
 public class SoftbodyFish : MonoBehaviour
 {
@@ -23,9 +24,14 @@ public class SoftbodyFish : MonoBehaviour
 
 	public Vector2 GetPosition()
 	{
-		return Bones[0].position;
+		if (initialized)
+		{
+			return Bones[0].position;
+		}
+		else return Vector2.zero;
 	}
 
+	private bool initialized = false;
 	void Start()
 	{
 		/*
@@ -71,14 +77,19 @@ public class SoftbodyFish : MonoBehaviour
 				hinge.limits = limits;
 				hinge.useLimits = true;
 			}
-		}
-		for (int i = 0; i < Bones.Length; i++) {
 			
+			CircleCollider2D collider = Bone.AddComponent<CircleCollider2D>();
+			collider.radius = 0.5f;
+			collider.isTrigger = true;
+
+			Bone.AddComponent<FishCollider>().team = transform.parent.name;
 		}
 
 		Bones[0].GetComponent<Rigidbody2D>().velocity = startVelocity;
 		Bones[0].position = startPosition;
 		Bones[0].rotation = startRotation;
+
+		initialized = true;
 	}
 
 	// Update is called once per frame
