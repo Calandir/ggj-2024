@@ -541,7 +541,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6afd7adba57977e418d26c3754c66b31, type: 3}
   - {fileID: 21300000, guid: 5ed872a941771f64885f720a2596f260, type: 3}
   m_spriteRenderer: {fileID: 220283297}
-  m_health: 5
+  m_health: 10
   m_offsetWhenDamaged: {x: -0.2, y: -0.1}
   m_damageAnimationTimeSeconds: 0.5
   m_defeatedSprite: {fileID: 21300000, guid: ea82d1ce7bed0c248afb930dcadd8b0d, type: 3}
@@ -2906,7 +2906,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5094b8ddb8ef04f7ca1a1fe99ab9330b, type: 3}
   - {fileID: 21300000, guid: 50df571ff4b60dd4ab557c29f43cd276, type: 3}
   m_spriteRenderer: {fileID: 1816505572}
-  m_health: 5
+  m_health: 10
   m_offsetWhenDamaged: {x: 0.2, y: -0.1}
   m_damageAnimationTimeSeconds: 0.5
   m_defeatedSprite: {fileID: 21300000, guid: 173131d5840bc024f81f8d55d138f476, type: 3}
