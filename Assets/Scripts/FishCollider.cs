@@ -10,7 +10,7 @@ public class FishCollider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		HitMarkerTemplate = Resources.Load("Prefabs/HitMarker") as GameObject;
+		HitMarkerTemplate = Resources.Load("HitMarker") as GameObject;
 		print(HitMarkerTemplate);
 	}
 

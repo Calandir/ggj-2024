@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hitmarker : MonoBehaviour
 {
-	float lifeTime = 0.3f;
+	float lifeTime = 0.2f;
 	float creationTime;
     void Start()
     {
@@ -14,8 +14,10 @@ public class Hitmarker : MonoBehaviour
 
     void Update()
     {
-		transform.rotation = Quaternion.AngleAxis(Random.value * 360, Vector3.forward);
-
+		if (Random.value < 0.1)
+		{
+			transform.rotation = Quaternion.AngleAxis(Random.value * 360, Vector3.forward);
+		}
 		if (Time.time-creationTime > lifeTime)
 		{
 			Destroy(gameObject);
