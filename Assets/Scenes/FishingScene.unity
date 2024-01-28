@@ -363,6 +363,8 @@ MonoBehaviour:
   player1FishTutorial: {fileID: 407012748}
   player2FishTutorial: {fileID: 569869563}
   fightTitle: {fileID: 1373927910}
+  player1: {fileID: 1230605681}
+  player2: {fileID: 1634737475}
   backgroundSky: {fileID: 1873637590}
   water: {fileID: 765784823}
   m_offsetWhenTitle: {x: 0.4, y: 0.4}
