@@ -92,6 +92,7 @@ public class FightCountdown : MonoBehaviour
         // START FIGHT HERE!!
         backgroundSky.RedSky();
         water.RedWater();
+        GetComponent<AudioSource>().Play();
 
         player1FishTutorial.SetActive(false);
         player2FishTutorial.SetActive(false);
