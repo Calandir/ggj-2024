@@ -41,7 +41,7 @@ public class FishingPlayer : MonoBehaviour
 
 
 	[SerializeField]
-	private Sprite blueFisherman, blueFishermanCast, fishermanDamage, fishermanThrow1, fishermanThrow2, fishermanDefeat;
+	private Sprite blueFisherman, blueFishermanCast, fishermanDamage, fishermanThrow1, fishermanThrow2, fishermanDefeat, fishermanReel;
 
 	private Dictionary<FishingState, Sprite> spriteMap;
 
@@ -118,7 +118,7 @@ public class FishingPlayer : MonoBehaviour
 			{FishingState.ChargeCast, blueFishermanCast},
 			{FishingState.Cast, blueFisherman},
 			{FishingState.Sinking, blueFisherman},
-			{FishingState.Reel, blueFisherman},
+			{FishingState.Reel, fishermanReel},
 			{FishingState.Defeated, fishermanDefeat},
 		};
 
@@ -200,7 +200,8 @@ public class FishingPlayer : MonoBehaviour
 				m_fishhook.LerpToReelDestination();
 
 				m_currentState = FishingState.Reel;
-			}
+                SFXSingleton.Instance.PlayLineStretchSFX();
+            }
 		}
 		else if (m_currentState == FishingState.Reel)
 		{

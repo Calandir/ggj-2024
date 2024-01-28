@@ -15,7 +15,11 @@ public class SFXSingleton : MonoBehaviour
 	public AudioClip SplashClip2;
 	public AudioClip SplashClip3;
 
-	public AudioClip LineStretchClip1;
+    public AudioClip HookClip1;
+    public AudioClip HookClip2;
+    public AudioClip HookClip3;
+
+    public AudioClip LineStretchClip1;
 	public AudioClip LineStretchClip2;
 	public AudioClip LineStretchClip3;
 
@@ -25,7 +29,8 @@ public class SFXSingleton : MonoBehaviour
 
 	private AudioClip[] m_plipClips;
 	private AudioClip[] m_splashClips;
-	private AudioClip[] m_lineStretchClips;
+    private AudioClip[] m_hookClips;
+    private AudioClip[] m_lineStretchClips;
 	private AudioClip[] m_thunkClips;
 
 	private void Awake()
@@ -42,7 +47,9 @@ public class SFXSingleton : MonoBehaviour
 			PlipClip1, PlipClip2, PlipClip3};
 		m_splashClips = new AudioClip[] {
 			SplashClip1, SplashClip2, SplashClip3};
-		m_lineStretchClips = new AudioClip[] {
+        m_hookClips = new AudioClip[] {
+            HookClip1, HookClip2, HookClip3};
+        m_lineStretchClips = new AudioClip[] {
 			LineStretchClip1, LineStretchClip2, LineStretchClip3};
 		m_thunkClips = new AudioClip[] {
 			ThunkClip1, ThunkClip2, ThunkClip3};
@@ -67,9 +74,14 @@ public class SFXSingleton : MonoBehaviour
 	public void PlaySplashSFX(float volumeScale = 1.0f)
 	{
 		PlayRandomSFX(m_splashClips, volumeScale);
-	}
+    }
 
-	public void PlayLineStretchSFX(float volumeScale = 1.0f)
+    public void PlayHookSFX(float volumeScale = 1.0f)
+    {
+        PlayRandomSFX(m_hookClips, volumeScale);
+    }
+
+    public void PlayLineStretchSFX(float volumeScale = 1.0f)
 	{
 		PlayRandomSFX(m_lineStretchClips, volumeScale);
 	}

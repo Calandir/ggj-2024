@@ -13,18 +13,6 @@ public class BackgroundMusic : MonoBehaviour
 
 	private void Awake()
 	{
-		if (s_instance == null)
-		{
-			s_instance = this;
-		}
-		else if (s_instance != this)
-		{
-			Destroy(this);
-			return;
-		}
-
-		DontDestroyOnLoad(this);
-
 		AudioSource src = GetComponent<AudioSource>();
 		src.PlayOneShot(m_fishingSong);
 
