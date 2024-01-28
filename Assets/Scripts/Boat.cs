@@ -25,6 +25,18 @@ public class Boat : MonoBehaviour
 	[SerializeField]
 	private float m_damageAnimationTimeSeconds = 0.5f;
 
+	[SerializeField]
+	private Sprite m_defeatedSprite;
+
+	[SerializeField]
+	private GameObject m_splash;
+
+	[SerializeField]
+	private GameObject[] m_hideOnDefeat;
+
+	[SerializeField]
+	private bool m_flipOnDefeat;
+
 	private Coroutine m_showDamageRoutine = null;
 	private float m_lastShowDamageStartTime;
 
@@ -35,6 +47,8 @@ public class Boat : MonoBehaviour
 	private void Start()
 	{
 		m_basePosition = transform.position;
+
+		m_splash.SetActive(false);
 	}
 
 	private void Update()
@@ -47,18 +61,64 @@ public class Boat : MonoBehaviour
 		}
 	}
 
+	private void OnDefeat()
+	{
+		m_spriteRenderer.sprite = m_defeatedSprite;
+
+		if (m_flipOnDefeat)
+		{
+			m_spriteRenderer.flipX = true;
+		}
+
+		m_basePosition += new Vector2(0.0f, 1.5f);
+
+		foreach (GameObject obj in m_hideOnDefeat)
+		{
+			obj.SetActive(false);
+		}
+		
+		StartCoroutine(DefeatRoutine());
+	}
+
+	private IEnumerator DefeatRoutine()
+	{
+		m_splash.SetActive(true);
+
+		yield return new WaitForSeconds(0.5f);
+
+		m_splash.SetActive(false);
+	}
+
 	public void OnTriggerEnter2D(Collider2D collision)
 	{
+		if (m_health == 0)
+		{
+			return;
+		}
+
+		if (collision.transform.parent.parent == null)
+		{
+			Debug.LogError(collision.transform.name);
+		}
+
 		if (collision.transform.parent.parent.name.ToLower() == m_collisionParentName.ToLower())
 		{
 			Destroy(collision.transform.parent.gameObject);
 
 			m_player.ShowDamageSprite();
+            SFXSingleton.Instance.PlayThunkSFX();
 
-			if (m_showDamageRoutine == null)
+            if (m_showDamageRoutine == null)
 			{
 				m_health -= 1;
 				m_health = Mathf.Clamp(m_health, 0, int.MaxValue);
+
+				if (m_health <= 0)
+				{
+					m_player.Defeat();
+					OnDefeat();
+					return;
+				}
 
 				int spriteIndex = Mathf.RoundToInt(m_health / m_damageSprites.Length);
 

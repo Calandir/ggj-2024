@@ -28,6 +28,7 @@ public class FishMover : MonoBehaviour
             Fishhook fishhook = other.GetComponent<Fishhook>();
 
             fishhook.FishingPlayer.fishOnTheLine += 1;  // WOOHOO! FISH ON THE LINE, REEL HER IN!
+            SFXSingleton.Instance.PlayLineStretchSFX();
 
             // Start on other object so the routine isn't interruptible if this is turned off
             fishhook.FishingPlayer.StartCoroutine(WaitToBeCollected(fishhook.FishingPlayer));

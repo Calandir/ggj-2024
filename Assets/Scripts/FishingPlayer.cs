@@ -33,7 +33,8 @@ public class FishingPlayer : MonoBehaviour
 		ChargeCast,
 		Cast,
 		Sinking,
-		Reel
+		Reel,
+		Defeated,
 	}
 
 
@@ -116,6 +117,7 @@ public class FishingPlayer : MonoBehaviour
 			{FishingState.Cast, blueFisherman},
 			{FishingState.Sinking, blueFisherman},
 			{FishingState.Reel, blueFisherman},
+			{FishingState.Defeated, fishermanDefeat},
 		};
 
 		fishSprites = new Sprite[10]{fishBasket0, fishBasket1, fishBasket2, fishBasket3, fishBasket4, fishBasket5, fishBasket6, fishBasket7, fishBasket8, fishBasket9};
@@ -127,7 +129,12 @@ public class FishingPlayer : MonoBehaviour
 
 	private void Update()
 	{
-		// Can throw anytime
+		if (m_currentState == FishingState.Defeated)
+		{
+			return;
+		}
+
+		// Can throw at any time
 		if (m_playerNumber == 1 && Input.GetKeyDown(KeyCode.Z))
 		{
 			StartCoroutine(FinishThrowingBlue());
@@ -150,6 +157,7 @@ public class FishingPlayer : MonoBehaviour
 			if (Input.GetKeyUp(m_inputKeyCode)) {
 				// When key is released, cast rod
 				m_currentState = FishingState.Cast;
+				SFXSingleton.Instance.PlayPlipSFX();
 			}
 
 			if (Input.GetKey(m_inputKeyCode)) {
@@ -203,7 +211,7 @@ public class FishingPlayer : MonoBehaviour
 
 	public void ShowDamageSprite()
 	{
-		if (m_showDamageRoutine != null)
+		if (m_showDamageRoutine != null || m_currentState == FishingState.Defeated)
 		{
 			return;
 		}
@@ -263,5 +271,9 @@ public class FishingPlayer : MonoBehaviour
 			if (!Input.GetKey(KeyCode.RightShift)){spriteRenderer.sprite = blueFisherman;}
 			else {spriteRenderer.sprite = spriteBeforeRoutine;}
 		}
+	}
+	public void Defeat()
+	{
+		m_currentState = FishingState.Defeated;
 	}
 }
