@@ -5,7 +5,9 @@ using UnityEngine;
 public class BackgroundMusic : MonoBehaviour
 {
 	[SerializeField]
-	private AudioClip m_song;
+	private AudioClip m_fishingSong;
+	[SerializeField]
+	private AudioClip m_combatSong;
 
 	private static BackgroundMusic s_instance = null;
 
@@ -24,7 +26,10 @@ public class BackgroundMusic : MonoBehaviour
 		DontDestroyOnLoad(this);
 
 		AudioSource src = GetComponent<AudioSource>();
-		src.clip = m_song;
-		src.Play();
+		src.PlayOneShot(m_fishingSong);
+
+		// The fishing song is 40 seconds, and we play the combat song after that.
+		src.clip = m_combatSong;
+		src.PlayDelayed(40.0f);
 	}
 }

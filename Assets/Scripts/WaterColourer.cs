@@ -19,7 +19,7 @@ public class WaterColourer : MonoBehaviour
 
     }
 
-    void RedWater()
+    public void RedWater()
     {
         redWaterCol = redwater.GetComponent<Renderer>().material.color;
         redWaterCol.a = 1.0f;

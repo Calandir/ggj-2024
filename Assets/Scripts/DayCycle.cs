@@ -50,7 +50,7 @@ public class DayCycle : MonoBehaviour
         transform.position = new Vector3(xPos, yPos, 0.0f);
     }
 
-    void RedSky()
+    public void RedSky()
     {
         skyIsRed = true;
         redSkyCol = redsky.GetComponent<Renderer>().material.color;
@@ -61,7 +61,7 @@ public class DayCycle : MonoBehaviour
         sunset.GetComponent<Renderer>().material.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
     }
 
-    void BlueSky()
+    public void BlueSky()
     {
         skyIsRed = false;
         blueSkyCol = bluesky.GetComponent<Renderer>().material.color;
