@@ -1296,6 +1296,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 66299b3266a58dc4fbca50b067afac92, type: 3}
     - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: fishermanReel
+      value: 
+      objectReference: {fileID: 21300000, guid: c64c10d86bafde74393677ee9237db08, type: 3}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: m_playerNumber
       value: 2
       objectReference: {fileID: 0}
@@ -1311,6 +1315,10 @@ PrefabInstance:
       propertyPath: fishermanDamage
       value: 
       objectReference: {fileID: 21300000, guid: 54dc0b9436a1a7345bbd59cf03c38dcc, type: 3}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: fishermanDefeat
+      value: 
+      objectReference: {fileID: 21300000, guid: 173131d5840bc024f81f8d55d138f476, type: 3}
     - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: fishermanThrow1
       value: 
@@ -1889,9 +1897,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1970628411}
     - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: fishermanReel
+      value: 
+      objectReference: {fileID: 21300000, guid: b064f905f1381d740996f8d0f633fc85, type: 3}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: fishermanDamage
       value: 
       objectReference: {fileID: 21300000, guid: c960cc1d8bfbf8d408818f0d5ff9379c, type: 3}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: fishermanDefeat
+      value: 
+      objectReference: {fileID: 21300000, guid: ea82d1ce7bed0c248afb930dcadd8b0d, type: 3}
     - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: m_fishhookDropLocation.x
       value: -9.312

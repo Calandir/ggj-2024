@@ -87,7 +87,7 @@ public class FightCountdown : MonoBehaviour
 
     private IEnumerator StartFightCountdown()
     {
-        yield return new WaitUntil(() => Time.time >= FightTimeStart);
+        yield return new WaitUntil(() => Time.timeSinceLevelLoad >= FightTimeStart);
 
         // START FIGHT HERE!!
         backgroundSky.RedSky();
