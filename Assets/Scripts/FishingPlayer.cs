@@ -34,13 +34,12 @@ public class FishingPlayer : MonoBehaviour
 		Cast,
 		Sinking,
 		Reel,
-
 		Defeated,
 	}
 
 
 	[SerializeField]
-	private Sprite blueFisherman, blueFishermanCast, fishermanDamage, fishermanDefeat;
+	private Sprite blueFisherman, blueFishermanCast, fishermanDamage, fishermanThrow1, fishermanThrow2, fishermanDefeat;
 
 	private Dictionary<FishingState, Sprite> spriteMap;
 
@@ -138,11 +137,13 @@ public class FishingPlayer : MonoBehaviour
 		// Can throw at any time
 		if (m_playerNumber == 1 && Input.GetKeyDown(KeyCode.Z))
 		{
-			m_fishMonger.launchBlueFish();
+			StartCoroutine(FinishThrowingBlue());
+
 		}
+		
 		if (m_playerNumber == 2 && Input.GetKeyDown(KeyCode.Slash))
 		{
-			m_fishMonger.launchRedFish();
+			StartCoroutine(FinishThrowingRed());
 		}
 
 		if (m_currentState == FishingState.Idle)
@@ -218,6 +219,11 @@ public class FishingPlayer : MonoBehaviour
 		StartCoroutine(ShowDamageSpriteRoutine());
 	}
 
+	private void ShowDefeatSprite()
+	{
+		spriteRenderer.sprite = fishermanDefeat;
+	}
+
 	private IEnumerator ShowDamageSpriteRoutine()
 	{
 		Sprite spriteBeforeRoutine = spriteRenderer.sprite;
@@ -235,6 +241,37 @@ public class FishingPlayer : MonoBehaviour
 		m_showDamageRoutine = null;
     }
 
+	private IEnumerator FinishThrowingBlue()
+	{
+		Sprite spriteBeforeRoutine = spriteRenderer.sprite;
+
+		spriteRenderer.sprite = fishermanThrow1;
+		yield return new WaitForSeconds(0.05f);
+		m_fishMonger.launchBlueFish();
+		spriteRenderer.sprite = fishermanThrow2;
+		yield return new WaitForSeconds(0.2f);
+		if (!Input.GetKey(KeyCode.Z))
+		{
+			if (!Input.GetKey(KeyCode.LeftShift)){spriteRenderer.sprite = blueFisherman;}
+			else {spriteRenderer.sprite = spriteBeforeRoutine;}
+		}
+	}
+
+	private IEnumerator FinishThrowingRed()
+	{
+		Sprite spriteBeforeRoutine = spriteRenderer.sprite;
+
+		spriteRenderer.sprite = fishermanThrow1;
+		yield return new WaitForSeconds(0.05f);
+		m_fishMonger.launchRedFish();
+		spriteRenderer.sprite = fishermanThrow2;
+		yield return new WaitForSeconds(0.2f);
+		if (!Input.GetKey(KeyCode.Slash))
+		{
+			if (!Input.GetKey(KeyCode.RightShift)){spriteRenderer.sprite = blueFisherman;}
+			else {spriteRenderer.sprite = spriteBeforeRoutine;}
+		}
+	}
 	public void Defeat()
 	{
 		m_currentState = FishingState.Defeated;
