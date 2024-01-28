@@ -39,12 +39,12 @@ public class FishMonger : MonoBehaviour
 	
 	public void launchBlueFish()
 	{
-		launchFish(BlueFish, -30, 50, false, SoftbodyFish.ControlScheme.WASD);
+		launchFish(BlueFish, -35, 60, false, SoftbodyFish.ControlScheme.WASD);
 	}
 
 	public void launchRedFish()
 	{
-		launchFish(RedFish, -150, 50, true, SoftbodyFish.ControlScheme.Arrows);
+		launchFish(RedFish, -145, 60, true, SoftbodyFish.ControlScheme.Arrows);
 	}
 
 	void launchFish(Transform parent, float angle, float speed, bool flipped, SoftbodyFish.ControlScheme controls)
