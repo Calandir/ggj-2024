@@ -45,7 +45,6 @@ public class SpawnFish : MonoBehaviour
             case 7:
                 fishToSpawn = orangefish;
                 break;
-
             case 8:
                 if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.3f && transform.position.y < -3) {fishToSpawn = catfish;}
                 else {fishToSpawn = fish;}
@@ -94,8 +93,8 @@ public class SpawnFish : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 position = transform.position;
-        if (facingRight) {position.y = startPosition.y + Mathf.Sin(Time.time) * 2;}
-        else             {position.y = startPosition.y + Mathf.Cos(Time.time) * 2;}
+        if (facingRight) {position.y = startPosition.y + Mathf.Sin(Time.time) * 3 - 1;}
+        else             {position.y = startPosition.y + Mathf.Cos(Time.time) * 3 - 1;}
         
         transform.position = position;
     }

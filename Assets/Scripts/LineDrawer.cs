@@ -8,7 +8,7 @@ public class LineDrawer : MonoBehaviour
     private LineRenderer m_lineRenderer;
 
 	[SerializeField]
-	private Vector2 m_castFromPosition;
+	private Transform m_castFromPosition;
 
 	[SerializeField]
 	private Transform m_fishhook;
@@ -25,8 +25,8 @@ public class LineDrawer : MonoBehaviour
 		}
 		else
 		{
-			m_positions[0] = m_castFromPosition;
-			m_positions[1] = m_fishhook.position;
+			m_positions[0] = m_castFromPosition.localPosition;
+			m_positions[1] = m_fishhook.localPosition;
 		}
 
 		m_lineRenderer.SetPositions(m_positions);
