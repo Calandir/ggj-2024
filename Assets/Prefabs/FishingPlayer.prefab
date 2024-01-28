@@ -638,6 +638,9 @@ MonoBehaviour:
   blueFisherman: {fileID: 21300000, guid: f84579c2d6bdebf478a0f5e22300fc1b, type: 3}
   blueFishermanCast: {fileID: 21300000, guid: 6560e430915459e44bd6b499180dc5e2, type: 3}
   fishermanDamage: {fileID: 0}
+  fishermanThrow1: {fileID: 21300000, guid: 4d62e1da34d1f85448f25a1aaa66a479, type: 3}
+  fishermanThrow2: {fileID: 21300000, guid: 96599b7cca580f94fa25cd8eb40a99c5, type: 3}
+  fishermanDefeat: {fileID: 0}
   fishOnTheLine: 0
   fishPileRenderer: {fileID: 1369120034680026065}
   fishBasket0: {fileID: 21300000, guid: 6094a491f0c437d48b8a013751d531b1, type: 3}

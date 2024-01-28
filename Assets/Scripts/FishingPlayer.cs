@@ -33,12 +33,12 @@ public class FishingPlayer : MonoBehaviour
 		ChargeCast,
 		Cast,
 		Sinking,
-		Reel,
+		Reel
 	}
 
 
 	[SerializeField]
-	private Sprite blueFisherman, blueFishermanCast, fishermanDamage;
+	private Sprite blueFisherman, blueFishermanCast, fishermanDamage, fishermanThrow1, fishermanThrow2, fishermanDefeat;
 
 	private Dictionary<FishingState, Sprite> spriteMap;
 
@@ -115,7 +115,7 @@ public class FishingPlayer : MonoBehaviour
 			{FishingState.ChargeCast, blueFishermanCast},
 			{FishingState.Cast, blueFisherman},
 			{FishingState.Sinking, blueFisherman},
-			{FishingState.Reel, blueFisherman}
+			{FishingState.Reel, blueFisherman},
 		};
 
 		fishSprites = new Sprite[10]{fishBasket0, fishBasket1, fishBasket2, fishBasket3, fishBasket4, fishBasket5, fishBasket6, fishBasket7, fishBasket8, fishBasket9};
@@ -127,14 +127,16 @@ public class FishingPlayer : MonoBehaviour
 
 	private void Update()
 	{
-		// Can throw at any time
+		// Can throw anytime
 		if (m_playerNumber == 1 && Input.GetKeyDown(KeyCode.Z))
 		{
-			m_fishMonger.launchBlueFish();
+			StartCoroutine(FinishThrowingBlue());
+
 		}
+		
 		if (m_playerNumber == 2 && Input.GetKeyDown(KeyCode.Slash))
 		{
-			m_fishMonger.launchRedFish();
+			StartCoroutine(FinishThrowingRed());
 		}
 
 		if (m_currentState == FishingState.Idle)
@@ -209,6 +211,11 @@ public class FishingPlayer : MonoBehaviour
 		StartCoroutine(ShowDamageSpriteRoutine());
 	}
 
+	private void ShowDefeatSprite()
+	{
+		spriteRenderer.sprite = fishermanDefeat;
+	}
+
 	private IEnumerator ShowDamageSpriteRoutine()
 	{
 		Sprite spriteBeforeRoutine = spriteRenderer.sprite;
@@ -225,4 +232,36 @@ public class FishingPlayer : MonoBehaviour
 
 		m_showDamageRoutine = null;
     }
+
+	private IEnumerator FinishThrowingBlue()
+	{
+		Sprite spriteBeforeRoutine = spriteRenderer.sprite;
+
+		spriteRenderer.sprite = fishermanThrow1;
+		yield return new WaitForSeconds(0.05f);
+		m_fishMonger.launchBlueFish();
+		spriteRenderer.sprite = fishermanThrow2;
+		yield return new WaitForSeconds(0.2f);
+		if (!Input.GetKey(KeyCode.Z))
+		{
+			if (!Input.GetKey(KeyCode.LeftShift)){spriteRenderer.sprite = blueFisherman;}
+			else {spriteRenderer.sprite = spriteBeforeRoutine;}
+		}
+	}
+
+	private IEnumerator FinishThrowingRed()
+	{
+		Sprite spriteBeforeRoutine = spriteRenderer.sprite;
+
+		spriteRenderer.sprite = fishermanThrow1;
+		yield return new WaitForSeconds(0.05f);
+		m_fishMonger.launchRedFish();
+		spriteRenderer.sprite = fishermanThrow2;
+		yield return new WaitForSeconds(0.2f);
+		if (!Input.GetKey(KeyCode.Slash))
+		{
+			if (!Input.GetKey(KeyCode.RightShift)){spriteRenderer.sprite = blueFisherman;}
+			else {spriteRenderer.sprite = spriteBeforeRoutine;}
+		}
+	}
 }
