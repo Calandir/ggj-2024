@@ -18,6 +18,7 @@ public class FishCollider : MonoBehaviour
         
     }
 
+	float lastStrongCollision = -1;
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		Transform otherTransform = collision.GetComponentInParent <Transform>();
@@ -30,6 +31,13 @@ public class FishCollider : MonoBehaviour
 				Rigidbody2D otherRB = otherTransform.GetComponent<Rigidbody2D>();
 
 				otherRB.AddForce(selfRB.velocity-otherRB.velocity, ForceMode2D.Impulse);
+
+				//A feature for having extra-strong collisions
+				if (Time.time - lastStrongCollision > 0.5 && selfRB.velocity.magnitude < otherRB.velocity.magnitude)
+				{
+					otherRB.AddForce((selfRB.velocity-otherRB.velocity).normalized*500, ForceMode2D.Impulse);
+					lastStrongCollision = Time.time;
+				}
 			}
 		}
 	}
