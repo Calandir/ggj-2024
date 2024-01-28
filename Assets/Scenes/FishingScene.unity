@@ -1310,6 +1310,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 54dc0b9436a1a7345bbd59cf03c38dcc, type: 3}
     - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: fishermanThrow1
+      value: 
+      objectReference: {fileID: 21300000, guid: 766fcace49e38004582fdaaa08864afc, type: 3}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: fishermanThrow2
+      value: 
+      objectReference: {fileID: 21300000, guid: c1f17a38352e5694fa854a4137a54ffb, type: 3}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: blueFishermanCast
       value: 
       objectReference: {fileID: 21300000, guid: 4b2f6472b4b47d444a90cfb5a9dcbd6d, type: 3}
