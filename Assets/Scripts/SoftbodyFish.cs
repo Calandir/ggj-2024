@@ -92,44 +92,41 @@ public class SoftbodyFish : MonoBehaviour
 		initialized = true;
 	}
 
-	// Update is called once per frame
+	private bool alive = true;
 	void Update()
 	{
-		Vector2 aim = new();
-		if (Input.GetKey(up))
+		if (alive)
 		{
-			aim += new Vector2(0, 1);
-		}
-		if (Input.GetKey(down))
-		{
-			aim += new Vector2(0, -1);
-		}
-		if (Input.GetKey(left))
-		{
-			aim += new Vector2(-1, 0);
-		}
-		if (Input.GetKey(right))
-		{
-			aim += new Vector2(1, 0);
-		}
-		aim.Normalize();
+			Vector2 aim = new();
+			if (Input.GetKey(up))
+			{
+				aim += new Vector2(0, 1);
+			}
+			if (Input.GetKey(down))
+			{
+				aim += new Vector2(0, -1);
+			}
+			if (Input.GetKey(left))
+			{
+				aim += new Vector2(-1, 0);
+			}
+			if (Input.GetKey(right))
+			{
+				aim += new Vector2(1, 0);
+			}
+			aim.Normalize();
 
-		Rigidbody2D headRB = Bones[0].GetComponent<Rigidbody2D>();
-		float thrustFactor = 20;
-		if ((headRB.velocity + aim).magnitude < headRB.velocity.magnitude)
-		{
-			thrustFactor *= 3;
+			Rigidbody2D headRB = Bones[0].GetComponent<Rigidbody2D>();
+			float thrustFactor = 10;
+			if ((headRB.velocity + aim).magnitude < headRB.velocity.magnitude)
+			{
+				thrustFactor *= 3;
+			}
+			if (headRB.velocity.magnitude < 10)
+			{
+				thrustFactor *= 3;
+			}
+			headRB.AddForce(aim * thrustFactor);
 		}
-		if (headRB.velocity.magnitude < 10)
-		{
-			thrustFactor *= 3;
-		}
-		for (int i = 0; i < Bones.Length; i++)
-		{
-			Rigidbody2D boneRB = Bones[i].GetComponent<Rigidbody2D>();
-			//boneRB.AddForce(aim * thrustFactor * boneRB.mass * Mathf.Lerp(1, -0.5f, i / Bones.Length));
-		}
-
-		headRB.AddForce(aim*thrustFactor);
 	}
 }
