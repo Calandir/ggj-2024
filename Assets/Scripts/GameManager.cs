@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void LoadSceneWithNoTransition(string sceneName)
+    {
+        SceneManager.LoadSceneAsync(sceneName);
+    }
+
     public void LoadSceneWithTransition(string sceneName)
     {
         m_canvas.gameObject.SetActive(false);

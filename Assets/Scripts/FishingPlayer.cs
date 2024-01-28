@@ -38,7 +38,7 @@ public class FishingPlayer : MonoBehaviour
 
 
 	[SerializeField]
-	private Sprite blueFisherman, blueFishermanCast;
+	private Sprite blueFisherman, blueFishermanCast, fishermanDamage;
 
 	private Dictionary<FishingState, Sprite> spriteMap;
 
@@ -196,4 +196,33 @@ public class FishingPlayer : MonoBehaviour
 			}
 		}
 	}
+
+	private Coroutine m_showDamageRoutine = null;
+
+	public void ShowDamageSprite()
+	{
+		if (m_showDamageRoutine != null)
+		{
+			return;
+		}
+
+		StartCoroutine(ShowDamageSpriteRoutine());
+	}
+
+	private IEnumerator ShowDamageSpriteRoutine()
+	{
+		Sprite spriteBeforeRoutine = spriteRenderer.sprite;
+
+		spriteRenderer.sprite = fishermanDamage;
+
+		yield return new WaitForSeconds(0.5f);
+
+		// Put it back if it hasn't already been changed
+        if (spriteRenderer.sprite == fishermanDamage)
+        {
+			spriteRenderer.sprite = spriteBeforeRoutine;
+        }
+
+		m_showDamageRoutine = null;
+    }
 }

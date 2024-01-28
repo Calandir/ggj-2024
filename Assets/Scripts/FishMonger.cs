@@ -26,7 +26,14 @@ public class FishMonger : MonoBehaviour
 
 	void Update()
 	{
-
+		foreach (Transform Fish in RedFish.transform)
+		{
+			removeOutOfBounds(Fish);
+		}
+		foreach (Transform Fish in BlueFish.transform)
+		{
+			removeOutOfBounds(Fish);
+		}
 	}
 	
 	public void launchBlueFish()
@@ -52,15 +59,15 @@ public class FishMonger : MonoBehaviour
 		FishScript.startVelocity = vecFromAngle(angle)*speed;
 	}
 
-	void removeOutOfBounds(GameObject Fish)
+	void removeOutOfBounds(Transform Fish)
 	{
 		Vector2 position = Fish.GetComponent<SoftbodyFish>().GetPosition();
-		position = activeCamera.WorldToScreenPoint(position);
+		position = activeCamera.WorldToViewportPoint(position);
 
 		float buffer = 0.2f;
 		if(position.x < -buffer || position.x > 1+buffer || position.y < buffer || position.y > 1 + buffer)
 		{
-			Destroy(Fish);
+			Destroy(Fish.gameObject);
 		}
 	}
 
