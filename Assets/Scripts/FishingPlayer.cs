@@ -27,6 +27,8 @@ public class FishingPlayer : MonoBehaviour
 	// How fast it takes to charge max power in seconds.
 	public float CastChargeSpeed;
 
+	public bool CanFight = false;
+
 	public enum FishingState
 	{
 		Idle,
@@ -135,15 +137,23 @@ public class FishingPlayer : MonoBehaviour
 		}
 
 		// Can throw at any time
-		if (m_playerNumber == 1 && Input.GetKeyDown(KeyCode.Z))
-		{
-			StartCoroutine(FinishThrowingBlue());
+		if (CanFight) {
+			if (m_playerNumber == 1 && Input.GetKeyDown(KeyCode.Z))
+			{
+				if (fishTotal > 0) {
+					fishTotal = fishTotal - 1;
+					StartCoroutine(FinishThrowingBlue());
+				}
 
-		}
+			}
 		
-		if (m_playerNumber == 2 && Input.GetKeyDown(KeyCode.Slash))
-		{
-			StartCoroutine(FinishThrowingRed());
+			if (m_playerNumber == 2 && Input.GetKeyDown(KeyCode.Slash))
+			{
+				if (fishTotal > 0) {
+					fishTotal = fishTotal - 1;
+					StartCoroutine(FinishThrowingRed());
+				}
+			}
 		}
 
 		if (m_currentState == FishingState.Idle)
