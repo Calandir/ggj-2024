@@ -200,7 +200,8 @@ public class FishingPlayer : MonoBehaviour
 				m_fishhook.LerpToReelDestination();
 
 				m_currentState = FishingState.Reel;
-			}
+                SFXSingleton.Instance.PlayLineStretchSFX();
+            }
 		}
 		else if (m_currentState == FishingState.Reel)
 		{
