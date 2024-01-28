@@ -28,8 +28,9 @@ public class BackgroundMusic : MonoBehaviour
 		AudioSource src = GetComponent<AudioSource>();
 		src.PlayOneShot(m_fishingSong);
 
-		// The fishing song is 40 seconds, and we play the combat song after that.
+		// Play the combat song after the fishing song.
+		// Hardcoding the delay is easier than trimming the mp3.
 		src.clip = m_combatSong;
-		src.PlayDelayed(40.0f);
+		src.PlayDelayed(38.0f);
 	}
 }
