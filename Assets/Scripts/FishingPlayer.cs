@@ -34,11 +34,13 @@ public class FishingPlayer : MonoBehaviour
 		Cast,
 		Sinking,
 		Reel,
+
+		Defeated,
 	}
 
 
 	[SerializeField]
-	private Sprite blueFisherman, blueFishermanCast, fishermanDamage;
+	private Sprite blueFisherman, blueFishermanCast, fishermanDamage, fishermanDefeat;
 
 	private Dictionary<FishingState, Sprite> spriteMap;
 
@@ -115,7 +117,8 @@ public class FishingPlayer : MonoBehaviour
 			{FishingState.ChargeCast, blueFishermanCast},
 			{FishingState.Cast, blueFisherman},
 			{FishingState.Sinking, blueFisherman},
-			{FishingState.Reel, blueFisherman}
+			{FishingState.Reel, blueFisherman},
+			{FishingState.Defeated, fishermanDefeat},
 		};
 
 		fishSprites = new Sprite[10]{fishBasket0, fishBasket1, fishBasket2, fishBasket3, fishBasket4, fishBasket5, fishBasket6, fishBasket7, fishBasket8, fishBasket9};
@@ -127,6 +130,11 @@ public class FishingPlayer : MonoBehaviour
 
 	private void Update()
 	{
+		if (m_currentState == FishingState.Defeated)
+		{
+			return;
+		}
+
 		// Can throw at any time
 		if (m_playerNumber == 1 && Input.GetKeyDown(KeyCode.Z))
 		{
@@ -201,7 +209,7 @@ public class FishingPlayer : MonoBehaviour
 
 	public void ShowDamageSprite()
 	{
-		if (m_showDamageRoutine != null)
+		if (m_showDamageRoutine != null || m_currentState == FishingState.Defeated)
 		{
 			return;
 		}
@@ -225,4 +233,9 @@ public class FishingPlayer : MonoBehaviour
 
 		m_showDamageRoutine = null;
     }
+
+	public void Defeat()
+	{
+		m_currentState = FishingState.Defeated;
+	}
 }
