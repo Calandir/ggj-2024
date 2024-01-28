@@ -612,6 +612,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: fishermanDamage
+      value: 
+      objectReference: {fileID: 21300000, guid: 54dc0b9436a1a7345bbd59cf03c38dcc, type: 3}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: blueFishermanCast
       value: 
       objectReference: {fileID: 21300000, guid: 4b2f6472b4b47d444a90cfb5a9dcbd6d, type: 3}
@@ -1155,6 +1159,10 @@ PrefabInstance:
       propertyPath: m_fishMonger
       value: 
       objectReference: {fileID: 1970628411}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: fishermanDamage
+      value: 
+      objectReference: {fileID: 21300000, guid: 9b64a180648f2224190547d3a097d0cd, type: 3}
     - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: m_fishhookDropLocation.x
       value: -9.312
