@@ -363,6 +363,8 @@ MonoBehaviour:
   player1FishTutorial: {fileID: 407012748}
   player2FishTutorial: {fileID: 569869563}
   fightTitle: {fileID: 1373927910}
+  player1: {fileID: 1230605681}
+  player2: {fileID: 1634737475}
   backgroundSky: {fileID: 1873637590}
   water: {fileID: 765784823}
   m_offsetWhenTitle: {x: 0.4, y: 0.4}
@@ -1309,6 +1311,14 @@ PrefabInstance:
       propertyPath: fishermanDamage
       value: 
       objectReference: {fileID: 21300000, guid: 54dc0b9436a1a7345bbd59cf03c38dcc, type: 3}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: fishermanThrow1
+      value: 
+      objectReference: {fileID: 21300000, guid: 766fcace49e38004582fdaaa08864afc, type: 3}
+    - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
+      propertyPath: fishermanThrow2
+      value: 
+      objectReference: {fileID: 21300000, guid: c1f17a38352e5694fa854a4137a54ffb, type: 3}
     - target: {fileID: 5978921719259480260, guid: bb06aca1eb2f3b4408e98de276255d4c, type: 3}
       propertyPath: blueFishermanCast
       value: 
