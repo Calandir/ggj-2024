@@ -17,7 +17,7 @@ public class Fishhook : MonoBehaviour
     private Rigidbody2D m_rigidbody;
 
     [SerializeField]
-    private Vector2 m_reelDestination;
+    private Transform m_reelDestination;
 
 	[SerializeField]
 	private float m_fishhookReelSpeedPerSecond = 1.0f;
@@ -46,11 +46,11 @@ public class Fishhook : MonoBehaviour
 
     public void LerpToReelDestination()
     {
-		Vector2 distanceToTravel = (Vector2)transform.position - m_reelDestination;
+		Vector2 distanceToTravel = (Vector2)transform.position - (Vector2)m_reelDestination.position;
 
         float totalTravelTime = distanceToTravel.magnitude / m_fishhookReelSpeedPerSecond;
 
-        StartCoroutine(ReelRoutine(Time.time, totalTravelTime, transform.position, m_reelDestination));
+        StartCoroutine(ReelRoutine(Time.time, totalTravelTime, transform.position, m_reelDestination.position));
     }
 
     private IEnumerator ReelRoutine(float startTime, float reelTime, Vector2 start, Vector2 finish)
@@ -88,8 +88,8 @@ public class Fishhook : MonoBehaviour
 			m_isAirBorn = false;
 
             // Store starting angle and distance from rod
-			float yOffset = transform.position.y - m_reelDestination.y;
-			float xOffset = transform.position.x - m_reelDestination.x;
+			float yOffset = transform.position.y - m_reelDestination.position.y;
+			float xOffset = transform.position.x - m_reelDestination.position.x;
 
 			m_currentAngleRadians = Mathf.Atan2(yOffset, xOffset);
             m_hypotenuse = new Vector2(xOffset, yOffset).magnitude;
@@ -104,8 +104,8 @@ public class Fishhook : MonoBehaviour
         }
 
         bool continueRotating =
-            (m_sinkClockwise && transform.position.x > m_reelDestination.x)
-            || (!m_sinkClockwise && transform.position.x < m_reelDestination.x);
+            (m_sinkClockwise && transform.position.x > m_reelDestination.position.x)
+            || (!m_sinkClockwise && transform.position.x < m_reelDestination.position.x);
         if (continueRotating)
         {
 			float direction = m_sinkClockwise ? -1 : 1;
@@ -120,6 +120,6 @@ public class Fishhook : MonoBehaviour
 
         float extraYOffset = -3.0f * (m_timeSinceLastSink / 5);
 
-        transform.position = m_reelDestination + new Vector2(newXOffset, newYOffset + extraYOffset);
+        transform.position = (Vector2)m_reelDestination.position + new Vector2(newXOffset, newYOffset + extraYOffset);
 	}
 }

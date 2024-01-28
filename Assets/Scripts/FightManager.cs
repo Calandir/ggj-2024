@@ -8,7 +8,7 @@ public class FightCountdown : MonoBehaviour
 {
     public float FightTimeStart;
 
-    public GameObject player1FightTutorial, player2FightTutorial;
+    public GameObject player1FightTutorial, player2FightTutorial, player1FishTutorial, player2FishTutorial;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,8 @@ public class FightCountdown : MonoBehaviour
         yield return new WaitUntil(() => Time.time >= FightTimeStart);
 
         // START FIGHT HERE!!
-        
+        player1FishTutorial.SetActive(false);
+        player2FishTutorial.SetActive(false);
         player1FightTutorial.SetActive(true);
         player2FightTutorial.SetActive(true);
     }

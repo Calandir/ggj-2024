@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_lineRenderer: {fileID: 6565628945725223081}
-  m_castFromPosition: {x: -4.524, y: 4.171}
+  m_castFromPosition: {fileID: 7850681324866504731}
   m_fishhook: {fileID: 6151493971075811107}
 --- !u!120 &6565628945725223081
 LineRenderer:
@@ -236,6 +236,90 @@ LineRenderer:
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!1 &2953564537759109451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7850681324866504731}
+  - component: {fileID: 4328235987285765554}
+  m_Layer: 0
+  m_Name: ReelDestination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7850681324866504731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2953564537759109451}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.55, y: 4.08, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2989222108434406045}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &4328235987285765554
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2953564537759109451}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &3380398536598651527
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +353,7 @@ Transform:
   - {fileID: 6151493971075811107}
   - {fileID: 2112883648947480696}
   - {fileID: 9024013899648378253}
+  - {fileID: 7850681324866504731}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3700968235006674811
@@ -373,7 +458,7 @@ MonoBehaviour:
   WaterLevel: 1.32
   m_fishingPlayer: {fileID: 5978921719259480260}
   m_rigidbody: {fileID: 7218956018593739478}
-  m_reelDestination: {x: -4.55, y: 3.89}
+  m_reelDestination: {fileID: 7850681324866504731}
   m_fishhookReelSpeedPerSecond: 5
 --- !u!50 &7218956018593739478
 Rigidbody2D:
@@ -552,6 +637,7 @@ MonoBehaviour:
   CastChargeSpeed: 1
   blueFisherman: {fileID: 21300000, guid: f84579c2d6bdebf478a0f5e22300fc1b, type: 3}
   blueFishermanCast: {fileID: 21300000, guid: 6560e430915459e44bd6b499180dc5e2, type: 3}
+  fishermanDamage: {fileID: 0}
   fishOnTheLine: 0
   fishPileRenderer: {fileID: 1369120034680026065}
   fishBasket0: {fileID: 21300000, guid: 6094a491f0c437d48b8a013751d531b1, type: 3}
@@ -564,3 +650,4 @@ MonoBehaviour:
   fishBasket7: {fileID: 21300000, guid: cd687826252a74921991c33e1e78a8f3, type: 3}
   fishBasket8: {fileID: 21300000, guid: 77a747c302f254e3da15e63d93f98350, type: 3}
   fishBasket9: {fileID: 21300000, guid: 9e1adab86562e4ec8bcf153cc8cadab1, type: 3}
+  m_fishMonger: {fileID: 0}
